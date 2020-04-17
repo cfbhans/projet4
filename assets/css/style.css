@@ -1,0 +1,171 @@
+html {
+	height: 100%;
+}
+body {
+    margin: 0;
+    height: 100%;
+    position: relative;
+}
+
+header {
+	background-image: url('../images/header-accueil.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:top;
+    height: 500px;
+    margin-top: -50px;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+}
+
+#header-title {
+	justify-content: center;
+	text-align: center;
+	padding: 15px;
+	background: rgba(128, 128, 128, 0.3);
+	color: #003366;
+	border-radius: 15px;
+}
+
+#wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100%;
+	position: relative;
+	margin-top: 80px;
+}
+
+/*A verifier si le menu s'affiche ou non au clique sur l'icone en responsive*/
+.collapse:not(.show) {
+    display: flex!important;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+h1, h3 {
+	text-align: center;
+	margin: 25px 0!important;
+}
+
+.btn {
+	background-color: orange!important;
+	color: white!important;
+	border-color: white!important;
+	margin-right: 5px;
+}
+
+h3 {
+	background-color: #808080;
+	color: white;
+    margin-bottom:0px;
+}
+
+#introduction {
+	display: flex;
+	border: solid #808080 5px;
+}
+
+#introduction > img {
+	padding: 10px;
+	max-width: 100%;
+	height: auto;
+}
+
+#introduction > p {
+	padding: 15px;
+}
+
+#chapters p {
+    background: #003366;
+    color: white;
+    border: solid #808080 1px;
+    padding: 12px;
+}
+
+#chapters {
+    margin:auto;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+form {
+	margin: 20px;
+	border: 2px solid #003366;
+	border-radius: 15px;
+	padding: 50px;
+}
+
+.comments {
+	border: solid 1px #ffc266;
+	margin: 12px;
+	padding: 12px;
+	width: 80%;
+}
+
+#comment-form {
+	padding: 10px!important;
+}
+
+.comment-form {
+	border: none!important;
+}
+
+.btn-danger, .btn-success, .btn-secondary {
+	border-radius: 5px;
+}
+
+.btn-form {
+	border: none;
+	padding: 0;
+	margin: 3px 10px;
+}
+
+.row {
+	margin: 30px 0!important;
+}
+
+.reported-form {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+.isReported {
+	font-style: italic; 
+}
+
+
+.note {
+	font-size: small;
+}
+
+#administration-menu {
+	margin-bottom: 30px;
+}
+
+/*Espacement du tinyMCE*/
+#post_title {
+	margin-bottom: 15px;
+}
+
+footer {
+	bottom: 0;
+	color: white;
+}
+
+/**************** MEDIA-QUERIES ********************/
+@media screen and (max-width: 750px) {
+	#introduction > img {
+		display: none;
+}
+}
