@@ -6,7 +6,7 @@
 	<title><?= $title ?? "Billetsimplepourl'Alaska" ?></title>
 
 	<link rel="stylesheet" href="<?= App\Tools\Helper::asset("css/style.css") ?>" />
-	<link rel="shortcut icon" href="https://projet4.celine-fafin.fr/assets/images/favicon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="<?= App\Tools\Helper::asset("images/favicon.png") ?>" type="image/x-icon">
 	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous" />
 
@@ -113,6 +113,6 @@
 
 	<!--Liens pour utilisation de javascript et autres frameworks -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://projet4.celine-fafin.fr/assets/scripts/main.js"></script>
+    <script src="<?= App\Tools\Helper::asset("scripts/main.js") ?>"></script>
 </body>
 </html>
