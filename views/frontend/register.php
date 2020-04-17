@@ -2,7 +2,7 @@
 	<h2 class="text-center">Bienvenue sur la page d'inscription</h2>
 </section>
 
-<section>
+<div>
 	<div class="errors">
 		
 	</div>
@@ -18,7 +18,7 @@
 		}
 		?>
 			<fieldset>
-				<legend>Vous inscrire en tant qu'administrateur : <p class="note">(il n'est possible de s'inscrire qu'avec la validation de Jean Forteroche)</p></legend>
+				<legend>Vous inscrire en tant qu'administrateur : <em class="note">(il n'est possible de s'inscrire qu'avec la validation de Jean Forteroche)</em></legend>
 				<div class="col-md-12">
 					<div class="form-group col-md-12">
 					<label for="email">Email</label>
@@ -37,4 +37,4 @@
 			</fieldset>
 		</form>
 	</div>
-</section>
+</div>
