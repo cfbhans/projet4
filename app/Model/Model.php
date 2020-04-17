@@ -14,12 +14,8 @@ abstract class Model
     }
 
 	protected function dbConnect() {
-        try{
-            $this->db = new PDO('mysql:host=db5000345937.hosting-data.io;dbname=dbs336371;port=3306;charset=utf8', 'dbu460871', 'Ionos-cfb48', [\PDO::ATTR_PERSISTENT => true]);
-        	$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        }catch(PDOException $pe){
-            echo $pe->getMessage();
-        } 
+        $this->db = new PDO('mysql:host='. env('DB_HOST') .';dbname='. env('DB_NAME') . ';port='. env('DB_PORT') .';charset=utf8', env('DB_USERNAME'), env('DB_PASSWORD'));
+    	$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 	}
 
 	public static function hydrate($instance, array $data) {
