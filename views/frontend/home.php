@@ -1,5 +1,5 @@
 
-<div id="introduction">
+<div id="introduction" class="mt-5">
 	<img src="assets/images/cafe_ordi.png" alt="ordinateur et café" width="570" height="380"/>
 	<p>
 

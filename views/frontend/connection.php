@@ -1,8 +1,6 @@
 <section>
 	<h2 class="text-center">Bienvenue sur la page de connexion</h2>
-</section>
 
-<section>
 	<!-- display form connection -->
 	<div id="connection">
 		<form id="connection-form" action="<?= App\Tools\Helper::link('users/administration') ?>" method="POST">
