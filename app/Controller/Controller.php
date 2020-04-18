@@ -12,6 +12,6 @@ abstract class Controller
 		ob_start();
 		require('views/' . $viewName . '.php');
 		$content = ob_get_clean();
-		require('views/template.php'); 
+		require('views/template.php');
 	}
 }

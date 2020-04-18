@@ -8,4 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
+    '5edc17298e63e9101b7632b127bb4701' => $baseDir . '/env.php',
+    '1d08eabbb45b5bb7abbb6e4e1720d731' => $baseDir . '/loadEnv.php',
 );

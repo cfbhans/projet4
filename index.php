@@ -8,7 +8,7 @@ use App\Tools\Helper;
 
 $router = new AltoRouter();
 //$router->setBasePath('/celine-fafin.projet4/');
-//$router->setBasePath('/');
+$router->setBasePath('/projet4');
 
 require_once "app/helper.php";
 require_once "app/routes.php";

@@ -2,10 +2,12 @@
 namespace App\Tools;
 
 class Helper{ 
-	private static $path = '/';
-  	private static $absolutePath = 'https://projet4.celine-fafin.fr';
+	private static $path = '/projet4/';
+  	private static $absolutePath = '/projet4/';
 
 	public static function redirect($uri){
+		var_dump($path);
+		die('redirect');
 		header("Location: " . self::$path . $uri);
 	}
 
