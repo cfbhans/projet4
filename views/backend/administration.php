@@ -1,9 +1,9 @@
-<!-- <?php
+<?php
 //if user is connected
 if(isset($_SESSION['connected'])) {
 ?>
- -->
-<section id="administration">
+
+<section id="administration" class='col-12'>
 	<h2>Bienvenue, sur la page d'administration de : <em><?= $_SESSION['connected'] ?></em></h2>
 	<hr />
 	<p>Que souhaitez-vous faire ?</p>
