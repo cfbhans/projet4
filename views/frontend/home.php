@@ -13,7 +13,7 @@
 <p>
 	Vous ne pourrez bientôt plus vous détacher de votre écran...
 	Suivez ce lien pour lire les différents chapitres :
-	<em><a href ="<?= App\Tools\Helper::link("chapters"); ?>">Les chapitres</a></em>
+	<em><a href ="<?= cf_link("chapters"); ?>">Les chapitres</a></em>
 </p>
 
 
