@@ -98,7 +98,7 @@ class FrontendController extends Controller
 		$user = new User();
 
 		$data = [
-			'email'				=> $_POST['email'],
+			'email'				=> $this->purify($_POST['email']),
 			'password'			=> $_POST['password'],
 			'confirmPassword'	=> $_POST['confirmPassword']
 		];
@@ -119,8 +119,8 @@ class FrontendController extends Controller
 	public function connect() {
 		$user = new User();
 
-		$email 		= $_POST['emailConnect'];
-		$password 	= $_POST['passwordConnect'];
+		$email 		= $this->purify($_POST['emailConnect']);
+		$password 	= $this->purify($_POST['passwordConnect']);
 
 		if(!$user->verifyConnect($email, $password)) {
 			if($user->hasErrors()) {

@@ -1,14 +1,14 @@
 // JavaScript source code
 
 //Script de la modal
-function override_mce_options($initArray) {
+/*function override_mce_options($initArray) {
      $opts = '*[*]';
     $initArray['valid_elements'] = $opts;
     $initArray['extended_valid_elements'] = $opts;
     return $initArray;
 }
 
-add_filter('tiny_mce_before_init', 'override_mce_options');
+add_filter('tiny_mce_before_init', 'override_mce_options');*/
 
 	tinymce.init({
 		selector: '#newPostContent',

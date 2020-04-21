@@ -6,8 +6,6 @@ class Helper{
   	private static $absolutePath = '/projet4/';
 
 	public static function redirect($uri){
-		var_dump($path);
-		die('redirect');
 		header("Location: " . self::$path . $uri);
 	}
 

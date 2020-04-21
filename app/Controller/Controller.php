@@ -14,4 +14,10 @@ abstract class Controller
 		$content = ob_get_clean();
 		require('views/template.php');
 	}
+
+	protected function purify ($value)
+	{
+		return htmlspecialchars($value);
+	}
+
 }

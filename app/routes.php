@@ -23,7 +23,7 @@ $router->map( 'GET', '/contact', function() {
 =======================================*/
 /*List of chapters*/
 $router->map( 'GET', '/chapters', function() {
-	die('123');
+	//die('123');
 	$controller = new App\Controller\FrontendController();
 	$controller->listChapters();
 });

@@ -72,8 +72,8 @@ class BackendController extends Controller
 
         if(isset($_POST['addChapter'])) {
         	$data = [
-    			'title'		=> $_POST['newPostTitle'],
-    			'content'	=> $_POST['newPostContent']
+    			'title'		=> $this->purify($_POST['newPostTitle']),
+    			'content'	=> $this->purify($_POST['newPostContent'])
         	];
 
         	$chapter->hydrate($chapter, $data);
@@ -97,8 +97,8 @@ class BackendController extends Controller
 
         if(isset($_POST['updateChapter'])){
             $data = [
-                'title'     => $_POST['updateTitle'],
-                'content'   => $_POST['updateContent']
+                'title'     => $this->purify($_POST['updateTitle']),
+                'content'   => $this->purify($_POST['updateContent'])
             ];
 
 
@@ -154,8 +154,8 @@ class BackendController extends Controller
         $comment = new Comment();
 
             $data = [
-                'author'    => $_POST['upAuthor'],
-                'comment'   => $_POST['upComment'],
+                'author'    => $this->purify($_POST['upAuthor']),
+                'comment'   => $this->purify($_POST['upComment']),
                 'enum'      => 'approved',
                 'isReported'=> 0
             ];

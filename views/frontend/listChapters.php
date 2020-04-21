@@ -25,7 +25,7 @@ if(isset($_SESSION['connected'])) {
         </h3>
         
         <p>
-            <?= nl2br(htmlspecialchars($chapter->excerpt($chapter->getContent()))); ?>
+            <?= htmlentities($chapter->getContent()); ?>
             <br />
             <em><a class ="btn" href="chapters/<?= $chapter->getId() ?>">Lire la suite...</a></em>
             <em><a class ="btn" href="chapters/<?= $chapter->getId() . "#comment-form" ?>">Commentaires</a></em>
