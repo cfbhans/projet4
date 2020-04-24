@@ -68,8 +68,8 @@ class FrontendController extends Controller
 
 		$data = [
 			'chapterId'	=> $chapterId,
-            'author'	=> $_REQUEST['author'], 
-            'comment'	=> $_REQUEST['comment']
+            'author'	=> $this->purify($_POST['author']), 
+            'comment'	=> $this->purify($_POST['comment'])
         ];
 
         $comment->hydrate($comment, $data);
@@ -120,7 +120,7 @@ class FrontendController extends Controller
 		$user = new User();
 
 		$email 		= $this->purify($_POST['emailConnect']);
-		$password 	= $this->purify($_POST['passwordConnect']);
+		$password 	= $_POST['passwordConnect'];
 
 		if(!$user->verifyConnect($email, $password)) {
 			if($user->hasErrors()) {
