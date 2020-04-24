@@ -25,34 +25,37 @@
 		<div id="wrap">
 			<header>
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
-					<a class="navbar-brand" href="<?= cf_link("") ?>">Billet simple pour l'Alaska</a>
+					<a class="navbar-brand" href="<?= cf_link("") ?>">Billet simple pour Alaska</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			        	<span class="navbar-toggler-icon"></span>
 			        </button>
-					<div id="navbarSupportedContent" class="collapse navbar-collapse">
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
-								<a class="nav-link" href="<?= cf_link("chapters") ?>">Chapitres</a>
+								<a class="nav-link" href="<?= cf_link("chapters") ?>">Chapitres<span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="<?= cf_link("author") ?>">Auteur</a>
 							</li>
 							<li class="nav-item">
-							<a class="nav-link" href="<?= cf_link("contact") ?>">Contact</a>
+								<a class="nav-link" href="<?= cf_link("contact") ?>">Contact</a>
 							</li>
 						</ul>
-						<?php
-						if(App\Tools\Helper::isConnected()) {
-							?>
-							<a id="deconnection-btn" class="btn justify-content-end" href="<?= App\Tools\Helper::link("users/logout") ?>" name="logout" role="button">Deconnexion</a>
+						<div class="form-inline my-2 my-lg-0">
 							<?php
-						} else {
+							if(App\Tools\Helper::isConnected()) {
+								?>
+								<a id="deconnection-btn" class="btn justify-content-end" href="<?= App\Tools\Helper::link("users/logout") ?>" name="logout" role="button">Deconnexion</a>
+								<?php
+							} else {
+								?>
+								<a class="regist_connect btn justify-content-end" href="<?= cf_link("users/create") ?>" role="button" title="register">Inscription</a>
+								<a class="regist_connect btn justify-content-end" href="<?= cf_link("users/connection") ?>" role="button" title="connection">Connexion</a>
+							<?php
+							}
 							?>
-							<a class="regist_connect btn justify-content-end" href="<?= cf_link("users/create") ?>" role="button" title="register">Inscription</a>
-							<a class="regist_connect btn justify-content-end" href="<?= cf_link("users/connection") ?>" role="button" title="connection">Connexion</a>
-						<?php
-						}
-						?>
+						</div>
 					</div>
 				</nav>
 				<div id='header-title'>

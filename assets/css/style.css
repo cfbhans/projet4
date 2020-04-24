@@ -38,15 +38,21 @@ header {
 }
 
 /*A verifier si le menu s'affiche ou non au clique sur l'icone en responsive*/
-.collapse:not(.show) {
+/*.collapse:not(.show) {
     display: flex!important;
 }
+*/
 
 .container {
     max-width: 1200px;
     width: 100%;
     max-height: 100%;
     margin: auto;
+}
+
+.container-fluid {
+    padding: 0!important;
+    margin: 0!important;
 }
 
 h1, h3 {
