@@ -12,7 +12,7 @@ if(isset($_SESSION['connected'])) {
         foreach($users as $user) {
             if(!$user->isAdmin()){
             ?>
-            <form class="input-group mb-3" method="post" action="<?= cf_link('users/' . $user->getId() .'/set'); ?>" >
+            <form class="validation-admin-form input-group mb-3" method="post" action="<?= cf_link('users/' . $user->getId() .'/set'); ?>" >
                 <input class="form-control" type="text" value="<?= htmlspecialchars($user->getEmail()); ?>" disabled="disabled" />
                 <input type="hidden" name="show" value="<?= $user->isAdmin(); ?>">
                 <div class="input-group-append">
@@ -22,7 +22,7 @@ if(isset($_SESSION['connected'])) {
                 <?php
             }else {
                 ?>
-             <form class="input-group mb-3" method="post" action="<?= cf_link('users/' . $user->getId() .'/unset'); ?>" >
+             <form class="validation-admin-form input-group mb-3" method="post" action="<?= cf_link('users/' . $user->getId() .'/unset'); ?>" >
                 <input class="form-control" value="<?= htmlspecialchars($user->getEmail()); ?>" disabled="disabled" />
                 <input type="hidden" name="hide" value="<?= $user->isAdmin(); ?>">
                 <div class="input-group-append">

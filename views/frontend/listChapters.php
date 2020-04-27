@@ -12,8 +12,7 @@ if(isset($_SESSION['connected'])) {
 
 
 
-<h1>Les chapitres !</h1>
-<p>Derniers chapitres du livre :</p>
+<h1>Les chapitres du livre</h1>
 
     <div id="chapters">
         <?php 
@@ -24,8 +23,8 @@ if(isset($_SESSION['connected'])) {
             <em><?= $chapter->getCreatedat() ?></em>
         </h3>
         
-        <p>
-            <?= htmlentities($chapter->getContent()); ?>
+        <div class="paragraphChapter">
+            <?= $chapter->getContent(); ?>
             <br />
             <em><a class ="btn" href="chapters/<?= $chapter->getId() ?>">Lire la suite...</a></em>
             <em><a class ="btn" href="chapters/<?= $chapter->getId() . "#comment-form" ?>">Commentaires</a></em>
@@ -36,7 +35,7 @@ if(isset($_SESSION['connected'])) {
             <?php
             }
             ?>
-        </p>
+        </div>
         <?php
         }
         ?>

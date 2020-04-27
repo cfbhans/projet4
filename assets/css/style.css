@@ -88,11 +88,11 @@ h3 {
 	padding: 15px;
 }
 
-#chapters p {
-    background: #003366;
-    color: white;
+#chapters .paragraphChapter {
+    color: #003366;
     border: solid #808080 1px;
     padding: 12px;
+    margin-bottom: 15px;
 }
 
 #chapters {
@@ -105,10 +105,10 @@ a {
 }
 
 form {
-	margin: 20px;
 	border: 2px solid #003366;
 	border-radius: 15px;
-	padding: 50px;
+	padding: 20px;
+	margin-bottom: 15px;
 }
 
 .comments {
@@ -124,6 +124,10 @@ form {
 
 .comment-form {
 	border: none!important;
+}
+
+#manageComment .comment-form {
+	height: auto;
 }
 
 .btn-danger, .btn-success, .btn-secondary {
@@ -162,6 +166,11 @@ form {
 /*Espacement du tinyMCE*/
 #post_title {
 	margin-bottom: 15px;
+}
+
+.validation-admin-form {
+	border: none;
+	padding: 0;	
 }
 
 footer {

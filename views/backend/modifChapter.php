@@ -16,7 +16,7 @@ if(isset($_SESSION['connected'])) {
 		</div>
 		<div class="form-group">
 	    	<label for="updateContent">Modifiez votre chapitre</label>
-			<textarea class="postContent form-control" name="updateContent" rows="10" required><?= htmlspecialchars($chapter->getContent()); ?></textarea>
+			<textarea class="postContent form-control" name="updateContent" rows="10" required><?= $chapter->getContent(); ?></textarea>
 			<input type="submit"  name="updateChapter" class="btn" value="Insérer le chapitre"  />
 		</div>
     </form>

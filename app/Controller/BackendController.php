@@ -19,6 +19,54 @@ class BackendController extends Controller
     /*======================================
                 Chapters  
     =======================================*/
+    public function newChapter(){
+        $this->render('backend/writeChapter', ['']);
+    }
+
+    public function addChapter() {
+        $chapter = new Chapter();
+        if(isset($_POST['addChapter'])) {
+
+            $data = [
+                'title'     => $this->purify($_POST['newPostTitle']),
+                'content'   => $_POST['newPostContent']
+            ];
+
+            $chapter->hydrate($chapter, $data);
+
+            $chapter->createChapter($chapter);
+
+             Helper::redirect('chapters');
+        }
+    }
+
+    public function modifyChapter($id) {
+        $chapter = (new Chapter)->find($id);
+
+        $this->render('backend/modifChapter', [
+            'chapter'  => $chapter
+        ]);
+    }
+
+    public function updateChapter($id){
+        $chapter = new Chapter();
+
+        if(isset($_POST['updateChapter'])){
+            $data = [
+                'title'     => $this->purify($_POST['updateTitle']),
+                'content'   => $_POST['updateContent']
+            ];
+
+
+            $chapter->hydrate($chapter, $data);
+
+            $chapter->updated($chapter, $id);
+
+            Helper::redirect('chapters/' . $id);
+        }
+    }
+
+
 
 
     /*======================================
@@ -33,6 +81,34 @@ class BackendController extends Controller
             'chapter' => $chapter,
             'comments' => $comments
         ]);
+    }
+
+    public function modifyComment($id){
+        $comment = (new Comment)->find($id);
+        $chapter = new Chapter();
+
+        $this->render('backend/moderation', [
+            'comment'  => $comment,
+            'chapter'  => $chapter
+        ]);
+    }
+
+    public function updateComment($id){
+        $comment = new Comment();
+
+            $data = [
+                'author'    => $this->purify($_POST['upAuthor']),
+                'comment'   => $this->purify($_POST['upComment']),
+                'enum'      => 'approved',
+                'isReported'=> 0
+            ];
+
+
+            $comment->hydrate($comment, $data);
+
+            $comment->update($comment, $id);
+
+            Helper::redirect('comments/comment');
     }
 
     /*======================================
@@ -61,53 +137,6 @@ class BackendController extends Controller
     	}
     	
     	Helper::redirect(" ");
-    }
-
-	public function newChapter(){
-		$this->render('backend/writeChapter', ['']);
-	}
-
-    public function addChapter() {
-    	$chapter = new Chapter();
-
-        if(isset($_POST['addChapter'])) {
-        	$data = [
-    			'title'		=> $this->purify($_POST['newPostTitle']),
-    			'content'	=> $this->purify($_POST['newPostContent'])
-        	];
-
-        	$chapter->hydrate($chapter, $data);
-
-        	$chapter->createChapter($chapter);
-
-        	 Helper::redirect('chapters');
-        }
-    }
-
-    public function modifyChapter($id) {
-        $chapter = (new Chapter)->find($id);
-
-        $this->render('backend/modifChapter', [
-            'chapter'  => $chapter
-        ]);
-    }
-
-    public function updateChapter($id){
-        $chapter = new Chapter();
-
-        if(isset($_POST['updateChapter'])){
-            $data = [
-                'title'     => $this->purify($_POST['updateTitle']),
-                'content'   => $this->purify($_POST['updateContent'])
-            ];
-
-
-            $chapter->hydrate($chapter, $data);
-
-            $chapter->updated($chapter, $id);
-
-            Helper::redirect('chapters/' . $id);
-        }
     }
 
 
@@ -139,35 +168,6 @@ class BackendController extends Controller
        Helper::redirect('comments/comment');
 
     }
-
-    public function modifyComment($id){
-        $comment = (new Comment)->find($id);
-        $chapter = new Chapter();
-
-        $this->render('backend/moderation', [
-            'comment'  => $comment,
-            'chapter'  => $chapter
-        ]);
-    }
-
-    public function updateComment($id){
-        $comment = new Comment();
-
-            $data = [
-                'author'    => $this->purify($_POST['upAuthor']),
-                'comment'   => $this->purify($_POST['upComment']),
-                'enum'      => 'approved',
-                'isReported'=> 0
-            ];
-
-
-            $comment->hydrate($comment, $data);
-
-            $comment->update($comment, $id);
-
-            Helper::redirect('comments/comment');
-    }
-
 
     public function confirm($id){
        $comment = new Comment();

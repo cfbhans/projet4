@@ -17,7 +17,7 @@ abstract class Controller
 
 	protected function purify ($value)
 	{
-		return htmlspecialchars($value);
+		return strip_tags($value);
 	}
 
 }
