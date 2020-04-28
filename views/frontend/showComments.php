@@ -13,14 +13,16 @@ if(isset($_SESSION['connected'])) {
 <h1>Commentez les chapitres!</h1>
 
 <div id="chapters">
-    <h3>
-        <?= htmlspecialchars($chapter->getTitle()); ?><br />
-        <em>écrit le <?= htmlspecialchars($chapter->getCreatedat()); ?></em>
-    </h3>
-    
-    <p>
-    <?= nl2br(htmlspecialchars($chapter->getContent())); ?>
-    </p>
+    <div class="paragraphChapter">
+        <h3>
+            <?= htmlspecialchars($chapter->getTitle()); ?><br />
+        </h3>
+        <div class="note">écrit le <?= htmlspecialchars($chapter->getCreatedat()); ?></div>
+        <br />
+        <p>
+        <?= nl2br(htmlspecialchars($chapter->getContent())); ?>
+        </p>
+    </div>
 </div>
 <hr>
 <div class="col-12">
@@ -60,19 +62,35 @@ if (is_array($comments) && !empty($comments))
         <hr>
 
         <?php 
-        if($comment->getIsReported()) { ?>
+        if($comment->getIsReported() && $comment->getEnum() != "confirmed") { 
+            ?>
             <p class="isReported">Ce commentaire a déjà été signalé ! Nous nous efforçons de le modérer rapidement. Merci de votre aide.</p>
-
             <?php
-            } elseif ($comment->getEnum() != "pending") { ?>
-                <p>Ce commentaire a été modéré par l'administrateur.</p>
+            if(isset($_SESSION['connected'])) {
+                ?>
+                <div class="input-group-append">
+                    <form class="btn-form" action="<?= cf_link('comments/' . $comment->getId() . '/edit'); ?>" method="get">
+                        <button class="btn-secondary" type="submit" name="moderationComment">Modérer</button>
+                    </form>
+                    <form class="btn-form" action="<?= cf_link('comments/' . $comment->getId() . '/delete'); ?>" method="post">
+                        <button class="btn-danger" type="submit" name="deleteComment">Supprimer</button>
+                    </form>
+                    <form class="btn-form" action="<?= cf_link('comments/' . $comment->getId() .'/confirm'); ?>" method="post">
+                        <button class="btn-success" type="submit" name="confirmComment">Confirmer</button>
+                    </form>    
+                </div> 
             <?php
-            }else { ?>
+            }
 
-            <form class="reported-form" action="<?= App\Tools\Helper::link('comments/'. $comment->getId() . '/report'); ?>" method="POST">
-                <input type="hidden" name="chapterId" value="<?= $chapter->getId() ?>">
-                <input class="btn-danger" type="submit" name="reported" value="Signaler"/>
-            </form>
+        } elseif ($comment->getEnum() != "pending") { ?>
+            <p>Ce commentaire a été modéré par l'administrateur.</p>
+        <?php
+        }else { ?>
+
+        <form class="reported-form" action="<?= App\Tools\Helper::link('comments/'. $comment->getId() . '/report'); ?>" method="POST">
+            <input type="hidden" name="chapterId" value="<?= $chapter->getId() ?>">
+            <input class="btn-danger" type="submit" name="reported" value="Signaler"/>
+        </form>
         <?php
         }
         ?>

@@ -18,10 +18,6 @@ if(isset($_SESSION['connected'])) {
         <?php 
         foreach($chapters as $chapter) { 
         ?>
-        <h3>
-            <?= htmlspecialchars($chapter->getTitle()) ?><br />
-            <em><?= $chapter->getCreatedat() ?></em>
-        </h3>
         
         <div class="paragraphChapter">
             <?= $chapter->getContent(); ?>

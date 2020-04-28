@@ -20,11 +20,8 @@ header {
 }
 
 #header-title {
-	justify-content: center;
-	text-align: center;
 	padding: 15px;
-	background: rgba(128, 128, 128, 0.3);
-	color: #003366;
+	color: #ffa500;
 	border-radius: 15px;
 }
 
@@ -55,22 +52,11 @@ header {
     margin: 0!important;
 }
 
-h1, h3 {
-	text-align: center;
-	margin: 25px 0!important;
-}
-
 .btn {
-	background-color: orange!important;
+	background-color: #ffa500!important;
 	color: white!important;
 	border-color: white!important;
 	margin-right: 5px;
-}
-
-h3 {
-	background-color: #808080;
-	color: white;
-    margin-bottom:0px;
 }
 
 #introduction {
@@ -89,10 +75,11 @@ h3 {
 }
 
 #chapters .paragraphChapter {
-    color: #003366;
-    border: solid #808080 1px;
-    padding: 12px;
-    margin-bottom: 15px;
+    color: #808080;
+    background: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 15px;
 }
 
 #chapters {
