@@ -10,33 +10,32 @@ if(isset($_SESSION['connected'])) {
 }
 ?>
 
-
-
 <h1>Les chapitres du livre</h1>
 
-    <div id="chapters">
-        <?php 
-        foreach($chapters as $chapter) { 
-        ?>
-        
-        <div class="paragraphChapter">
-            <?= $chapter->getContent(); ?>
-            <br />
-            <em><a class ="btn" href="chapters/<?= $chapter->getId() ?>">Lire la suite...</a></em>
-            <em><a class ="btn" href="chapters/<?= $chapter->getId() . "#comment-form" ?>">Commentaires</a></em>
-            <?php 
-            if(isset($_SESSION['connected'])) {
-            ?>
-                <em><a class ="btn" href="chapters/<?= $chapter->getId() ?>/edit">Modifier le chapitre</a></em>
-            <?php
-            }
-            ?>
-        </div>
-        <?php
-        }
-        ?>
+    <?php 
+    foreach($chapters as $chapter) { 
+    ?>
+    <a href="chapters/<?= $chapter->getId() ?>" class="chapterLink">
+        <div id="chapters">
 
-    </div>
+            <div class="paragraphChapter">
+                <?= $chapter->excerpt($chapter->getContent()); ?>
+                <br />
+                <a class ="btn commentBtn" href="chapters/<?= $chapter->getId() . "#comment-form" ?>">Commentaires</a>
+                <?php 
+                if(isset($_SESSION['connected'])) {
+                ?>
+                    <a class ="btn" href="chapters/<?= $chapter->getId() ?>/edit">Modifier le chapitre</a>
+                <?php
+                }
+                ?>
+            </div>
+
+        </div>
+    </a>
+    <?php
+    }
+    ?>
 <!--     <div class="d-flex justify-content-between my-4">
         <?php 
         foreach($pages as $page) {?>

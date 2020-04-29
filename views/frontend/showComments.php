@@ -15,7 +15,7 @@ if(isset($_SESSION['connected'])) {
 <div id="chapters">
     <div class="paragraphChapter">
         <h3>
-            <?= htmlspecialchars($chapter->getTitle()); ?><br />
+            <?= $chapter->getTitle(); ?><br />
         </h3>
         <div class="note">écrit le <?= htmlspecialchars($chapter->getCreatedat()); ?></div>
         <br />
