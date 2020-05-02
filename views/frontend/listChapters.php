@@ -21,11 +21,11 @@ if(isset($_SESSION['connected'])) {
             <div class="paragraphChapter">
                 <?= $chapter->excerpt($chapter->getContent()); ?>
                 <br />
-                <a class ="btn commentBtn" href="chapters/<?= $chapter->getId() . "#comment-form" ?>">Commentaires</a>
+                <a class ="btn btnListChapter" href="chapters/<?= $chapter->getId() . "#comment-form" ?>">Commentaires</a>
                 <?php 
                 if(isset($_SESSION['connected'])) {
                 ?>
-                    <a class ="btn" href="chapters/<?= $chapter->getId() ?>/edit">Modifier le chapitre</a>
+                    <a class ="btn btnListChapter" href="chapters/<?= $chapter->getId() ?>/edit">Modifier le chapitre</a>
                 <?php
                 }
                 ?>
