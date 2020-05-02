@@ -13,9 +13,7 @@ use \App\Controller\Controller;
  */
 class UserController extends Controller
 {
-	/*======================================
-                Users  
-    =======================================*/
+
     /*Gestion des administrateurs*/
 	public function admin() {
 		if (isset($_SESSION['connected'])){
@@ -24,14 +22,14 @@ class UserController extends Controller
 	}
 
     /*listes des utilisateurs*/
-	public function userList(){
+	public function list(){
 		$users = (new User)->unregistered();
 
 		$this->render('backend/userAdmin', [
 			'users' => $users
 		]);
 	}
-
+    /* deconnexion */
 	public function logout(){
 		if (isset($_SESSION['connected'])) {
 		   	$_SESSION = array();
@@ -42,7 +40,7 @@ class UserController extends Controller
     }
 
 
-
+    /* administrateur */
     public function setAdmin($id){
     	$users = new User();
 
@@ -52,6 +50,7 @@ class UserController extends Controller
     	
     }
 
+    /*suppression des accessibilités d'administrateur*/
     public function unsetAdmin($id){
         $users = new User();
 

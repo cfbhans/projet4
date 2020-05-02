@@ -14,7 +14,7 @@ use \App\Controller\Controller;
 class ChapterController extends Controller
 {
     
-    public function listChapters() {
+    public function index() {
         $chapters = (new Chapter)->all();
         
         $this->render('frontend/listChapters',[
@@ -22,7 +22,7 @@ class ChapterController extends Controller
         ]);
     }
 
-    public function chapter($id) {
+    public function show($id) {
         
         $chapter = (new Chapter)->find($id);
 

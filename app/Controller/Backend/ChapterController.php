@@ -14,11 +14,11 @@ use \App\Controller\Controller;
 class ChapterController extends Controller
 {
 
-    public function newChapter(){
+    public function create(){
         $this->render('backend/writeChapter', ['']);
     }
 
-    public function addChapter() {
+    public function store() {
         $chapter = new Chapter();
         if(isset($_POST['addChapter'])) {
 
@@ -35,7 +35,7 @@ class ChapterController extends Controller
         }
     }
 
-    public function modifyChapter($id) {
+    public function edit($id) {
         $chapter = (new Chapter)->find($id);
 
         $this->render('backend/modifChapter', [
@@ -43,7 +43,7 @@ class ChapterController extends Controller
         ]);
     }
 
-    public function updateChapter($id){
+    public function update($id){
         $chapter = new Chapter();
 
         if(isset($_POST['updateChapter'])){

@@ -30,11 +30,11 @@ class UserController extends Controller
         $this->render('frontend/connection', ['']);
     }
 
-    public function register() {
+    public function create() {
         $this->render('frontend/register', ['']);
     }
 
-    public function addUser() {
+    public function store() {
         $user = new User();
 
         $data = [

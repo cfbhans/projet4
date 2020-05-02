@@ -14,7 +14,7 @@ use \App\Controller\Controller;
 class CommentController extends Controller
 {
 	
-    public function addComment($chapterId)  {
+    public function create($chapterId)  {
         $comment = new Comment();
 
         $data = [

@@ -25,38 +25,38 @@ $router->map( 'GET', '/contact', function() {
 $router->map( 'GET', '/chapters', function() {
 	//die('123');
 	$controller = new App\Controller\Frontend\ChapterController();
-	$controller->listChapters();
+	$controller->index();
 });
 
 /*Chapter by id*/
 $router->map( 'GET', '/chapters/[i:id]', function($id) {
 	//die('123');
 	$controller = new App\Controller\Frontend\ChapterController();
-	$controller->chapter($id);
+	$controller->show($id);
 });
 
 /*Add new chapter*/
 $router->map( 'POST', '/chapters', function() {
 	$controller = new App\Controller\Backend\ChapterController();
-	$controller->addChapter();
+	$controller->store();
 });
 
 /*map to add chapter page*/
 $router->map('GET', '/chapters/create', function() { 
 	$controller = new App\Controller\Backend\ChapterController();
-	$controller->newChapter();
+	$controller->create();
 });
 
 /*map to add chapter page*/
 $router->map('GET', '/chapters/[i:id]/edit', function($id) { 
 	$controller = new App\Controller\Backend\ChapterController();
-	$controller->modifyChapter($id);
+	$controller->edit($id);
 });
 
 /*map to add chapter page*/
 $router->map('POST', '/chapters/[i:id]', function($id) { 
 	$controller = new App\Controller\Backend\ChapterController();
-	$controller->updateChapter($id);
+	$controller->update($id);
 });
 
 /*======================================
@@ -65,13 +65,13 @@ $router->map('POST', '/chapters/[i:id]', function($id) {
 /*add new comment*/
 $router->map( 'POST', '/comments/create/[i:id]', function($id) {
 	$controller = new App\Controller\Frontend\CommentController();
-	$controller->addComment($id);
+	$controller->create($id);
 });
 
 /*Reported comment*/
 $router->map('GET', '/comments/comment', function() {
 	$controller = new App\Controller\Backend\CommentController();
-	$controller->manageComment();
+	$controller->index();
 });
 
 /*reported comment*/
@@ -89,13 +89,13 @@ $router->map( 'POST', '/comments/[i:id]/delete', function($id) {
 /*moderated comment*/
 $router->map( 'GET', '/comments/[i:id]/edit', function($id) {/*edit*/
 	$controller = new App\Controller\Backend\CommentController();
-	$controller->modifyComment($id);
+	$controller->edit($id);
 });
 
 /*updated comment*/
 $router->map('POST', '/comments/[i:id]/moderate', function($id) {/*moderate*/
 	$controller = new App\Controller\Backend\CommentController();
-	$controller->updateComment($id);
+	$controller->update($id);
 });
 
 /*confirmed comment*/
@@ -105,20 +105,19 @@ $router->map( 'POST', '/comments/[i:id]/confirm', function($id) {
 });
 
 
-
 /*======================================
 			Users 
 =======================================*/
 /*Registration*/
 $router->map('GET', '/users/create', function() {
 	$controller = new App\Controller\Frontend\UserController();
-	$controller->register();
+	$controller->create();
 });
 
 /*Register user*/
 $router->map('POST', '/users', function() {
 	$controller = new App\Controller\Frontend\UserController();
-	$controller->addUser();
+	$controller->store();
 });
 
 /*Connection*/
@@ -148,7 +147,7 @@ $router->map('POST', '/users/administration', function() {
 /*List of users*/
 $router->map('GET', '/users/user', function() { 
 	$controller = new App\Controller\Backend\UserController();
-	$controller->userList(); 
+	$controller->list(); 
 });
 
 /*Modify admin users*/

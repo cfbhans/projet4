@@ -56,6 +56,7 @@ class Chapter extends Model
 
     /**
      * modification d'un chapitre
+     * @param string chapter
      * @param int $id
      * @return bool
      */
@@ -72,7 +73,7 @@ class Chapter extends Model
 		
 	}
 
-/*GETTERS*/
+
 	public function getId(): ?int {
 		return $this->id; 
 	}
@@ -93,7 +94,7 @@ class Chapter extends Model
 		return $this->createdat; 
 	}
 
-/*SETTERS*/
+
 	public function setId($id) {
 		$id = (int)$id;
 
@@ -124,7 +125,7 @@ class Chapter extends Model
 		$this->createdat = $createdat;
 	}
 	
-/*méthodes supplémentaires*/
+
 	public function excerpt(string $content, int $limit = 200) {
 		if (strlen($content) <= $limit) {
 			return $content;

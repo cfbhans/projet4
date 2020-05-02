@@ -14,8 +14,8 @@ use \App\Controller\Controller;
 class CommentController extends Controller
 {
 	
-    /* Gestion des commentaires signalés9*/
-    public function manageComment(){
+    /* Gestion des commentaires signalés*/
+    public function index(){
         $chapter = new Chapter();
         $comments = (new Comment)->allCommentsReported();
 
@@ -25,7 +25,7 @@ class CommentController extends Controller
         ]);
     }
 
-    public function modifyComment($id){
+    public function edit($id){
         $comment = (new Comment)->find($id);
         $chapter = new Chapter();
 
@@ -35,7 +35,7 @@ class CommentController extends Controller
         ]);
     }
 
-    public function updateComment($id){
+    public function update($id){
         $comment = new Comment();
 
             $data = [
