@@ -178,6 +178,13 @@ footer {
 }
 
 /**************** MEDIA-QUERIES ********************/
+@media screen and (min-width: 750px) and (max-width: 992px) {
+	.jumbotron img.col-sm-12.col-md-5 {
+		height: max-content;
+	}
+}
+
+
 @media screen and (max-width: 750px) {
 	#introduction > img {
 		display: none;

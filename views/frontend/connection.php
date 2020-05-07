@@ -3,7 +3,7 @@
 
 	<!-- display form connection -->
 	<div id="connection">
-		<form id="connection-form" action="<?= App\Tools\Helper::link('users/administration') ?>" method="POST">
+		<form id="connection-form" action="<?= cf_link('users/administration') ?>" method="POST">
 		<?php
 		if(isset($_SESSION['errors'])){
 			foreach ($_SESSION['errors'] as $error) {

@@ -9,7 +9,7 @@
 
 	<!-- display form register -->
 	<div id="register">
-		<form  id="register-form" action="<?= App\Tools\Helper::link('users')?>" method="POST">
+		<form  id="register-form" action="<?= cf_link('users')?>" method="POST">
 		<?php
 		if(isset($_SESSION['errors'])){
 			foreach ($_SESSION['errors'] as $error) {

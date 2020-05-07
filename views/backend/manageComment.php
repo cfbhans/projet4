@@ -2,7 +2,7 @@
 //if user is connected
 if(isset($_SESSION['connected'])) {
 ?>
-<p> Retour au <a href="<?= App\Tools\Helper::link("users/administration") ?>"> menu d'administration</a></p>
+<p> Retour au <a href="<?= cf_link("users/administration") ?>"> menu d'administration</a></p>
 <section id="manageComment">
 	<h2>Gerer les commentaires des lecteurs :</h2>
 	<hr />

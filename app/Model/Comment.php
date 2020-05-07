@@ -47,8 +47,9 @@ class Comment extends Model
         ]);
 
         $data = $q->fetch();
+
         if(!$data) {
-        	die("il y a une erreur");
+        	die("il y a une erreur de commentaire");
         }
         
         $comment = new Comment();
@@ -149,6 +150,7 @@ class Comment extends Model
 		$deleted = $q->execute([
 			'id' => $id
 		]);
+		return deleted;
 	}
 
 /**

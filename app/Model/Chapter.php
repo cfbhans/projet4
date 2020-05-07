@@ -40,7 +40,7 @@ class Chapter extends Model
 
         $data = $q->fetch();
         if(!$data) {
-        	die("il y a une erreur");
+        	die("il y a une erreur de chapitre");
         }
         
         $chapter = new Chapter();
@@ -135,6 +135,8 @@ class Chapter extends Model
 	}
 
 	public function createChapter(Chapter $chapter){
+		if($this->errors)
+
 		$q = $this->db->prepare('INSERT INTO chapters(title, content, createdat) VALUES (:newPostTitle, :newPostContent, NOW())');
 
 		$newChapter = $q->execute([

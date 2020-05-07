@@ -14,50 +14,51 @@ use \App\Controller\Controller;
 class ChapterController extends Controller
 {
 
-    public function create(){
-        $this->render('backend/writeChapter', ['']);
-    }
+	public function create(){
+		$this->render('backend/writeChapter', ['']);
+	}
 
-    public function store() {
-        $chapter = new Chapter();
-        if(isset($_POST['addChapter'])) {
+	public function store() {
+		$chapter = new Chapter();
 
-            $data = [
-                'title'     => $this->purify($_POST['newPostTitle']),
-                'content'   => $_POST['newPostContent']
-            ];
+			$data = [
+				'title'     => $this->purify($_POST['newPostTitle']),
+				'content'   => $_POST['newPostContent']
+			];
 
-            $chapter->hydrate($chapter, $data);
+			$chapter->hydrate($chapter, $data);
 
-            $chapter->createChapter($chapter);
+			$chapter->createChapter($chapter);
 
-             Helper::redirect('chapters');
-        }
-    }
+			 Helper::redirect('chapters');
+			 
+	}
 
-    public function edit($id) {
-        $chapter = (new Chapter)->find($id);
+	public function edit($id) {
+		$chapter = (new Chapter)->find($id);
 
-        $this->render('backend/modifChapter', [
-            'chapter'  => $chapter
-        ]);
-    }
+		$this->render('backend/modifChapter', [
+			'chapter'  => $chapter
+		]);
+	}
 
-    public function update($id){
-        $chapter = new Chapter();
+	public function update($id){
+		$chapter = new Chapter();
 
-        if(isset($_POST['updateChapter'])){
-            $data = [
-                'title'     => $this->purify($_POST['updateTitle']),
-                'content'   => $_POST['updateContent']
-            ];
+		
+			$data = [
+				'title'     => $this->purify($_POST['updateTitle']),
+				'content'   => $_POST['updateContent']
+			];
 
 
-            $chapter->hydrate($chapter, $data);
+			$chapter->hydrate($chapter, $data);
 
-            $chapter->updated($chapter, $id);
+			$chapter->updated($chapter, $id);
 
-            Helper::redirect('chapters/' . $id);
-        }
-    }
+			Helper::redirect('chapters/' . $id);
+		
+	}
+
+	
 }

@@ -20,6 +20,7 @@ abstract class Model
 
 	public static function hydrate($instance, array $data) {
         foreach($data as $key => $value) {
+            
             $method = 'set'.ucfirst($key);
             
             if(method_exists($instance, $method) || is_callable([$instance, $method])) {

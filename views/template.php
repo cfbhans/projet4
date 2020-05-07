@@ -46,7 +46,7 @@
 							<?php
 							if(App\Tools\Helper::isConnected()) {
 								?>
-								<a id="deconnection-btn" class="btn justify-content-end" href="<?= App\Tools\Helper::link("users/logout") ?>" name="logout" role="button">Deconnexion</a>
+								<a id="deconnection-btn" class="btn justify-content-end" href="<?= cf_link("users/logout") ?>" name="logout" role="button">Deconnexion</a>
 								<?php
 							} else {
 								?>

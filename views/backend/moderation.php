@@ -2,7 +2,7 @@
 //if user is connected
 if(isset($_SESSION['connected'])) {
 ?>
-<p> Retour au <a href="<?= App\Tools\Helper::link("users/administration") ?>"> menu d'administration</a></p>
+<p> Retour au <a href="<?= cf_link("users/administration") ?>"> menu d'administration</a></p>
 
 <section id="moderationComment">
 	<h1>Modifier le commentaire</h1>
@@ -17,7 +17,7 @@ if(isset($_SESSION['connected'])) {
         </div>
         <div class="form-group">
             <label for="upComment">Modifiez le commentaire</label>
-            <textarea id="upComment" class="form-control" name="upComment" rows="10"><?= $comment->getComment(); ?></textarea>
+            <textarea id="upComment" class="form-control" name="upComment" rows="10" required="required"><?= $comment->getComment(); ?></textarea>
         </div>
         <input type="submit" name="upBtnComment" class="btn" value="Modifier" />
     </form>
