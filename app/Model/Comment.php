@@ -97,7 +97,8 @@ class Comment extends Model
 		$reported = $q->execute([
 			'id' => $id
 		]);
-		
+		var_dump($reported);
+		die();
 		return $reported;
 	}
 
@@ -150,7 +151,6 @@ class Comment extends Model
 		$deleted = $q->execute([
 			'id' => $id
 		]);
-		return deleted;
 	}
 
 /**

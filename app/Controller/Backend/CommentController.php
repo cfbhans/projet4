@@ -54,25 +54,16 @@ class CommentController extends Controller
     }
     
     public function delete($id){
-        $comment = (new Comment)->find($id);
+        $comment = (new Comment)->delete($id);
 
-        $data [];
-        var_dump($_POST['chapterId']);
-
-        //$chapterId = comments->find($id);
-        
-        die();
-
-        Helper::redirect('chapters/' . $_POST['chapterId']);
+       Helper::redirect('comments/comment');
     }
+
 
     public function confirm($id){
        $comment = new Comment();
 
         $comment->confirm($id);
-
-        var_dump();
-        die();
 
         Helper::redirect('comments/comment');
     }

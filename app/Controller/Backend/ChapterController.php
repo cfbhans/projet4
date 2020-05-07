@@ -60,5 +60,16 @@ class ChapterController extends Controller
 		
 	}
 
+	 public function delete($id){
+	 	
+	 	$chapter = (new Chapter)->delete($id);
+       
+
+        $chapters = (new Chapter)->all();
+        $this->render('frontend/listChapters',[
+            'chapters' => $chapters,
+        ]);
+    }
+
 	
 }

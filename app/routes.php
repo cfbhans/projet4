@@ -41,22 +41,28 @@ $router->map( 'POST', '/chapters', function() {
 	$controller->store();
 });
 
-/*map to add chapter page*/
+/*map to create chapter page*/
 $router->map('GET', '/chapters/create', function() { 
 	$controller = new App\Controller\Backend\ChapterController();
 	$controller->create();
 });
 
-/*map to add chapter page*/
+/*map to edit chapter page*/
 $router->map('GET', '/chapters/[i:id]/edit', function($id) { 
 	$controller = new App\Controller\Backend\ChapterController();
 	$controller->edit($id);
 });
 
-/*map to add chapter page*/
+/*map to update chapter page*/
 $router->map('POST', '/chapters/[i:id]', function($id) { 
 	$controller = new App\Controller\Backend\ChapterController();
 	$controller->update($id);
+});
+
+/*map to delete chapter page*/
+$router->map( 'POST', '/chapters/[i:id]/delete', function($id) {
+	$controller = new App\Controller\Backend\ChapterController();
+	$controller->delete($id);
 });
 
 /*======================================

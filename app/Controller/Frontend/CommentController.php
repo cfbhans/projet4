@@ -37,7 +37,7 @@ class CommentController extends Controller
     public function reported($id) {
         $reported = (new Comment)->reported($id);
 
-         Helper::redirect('chapters/' . $_POST['chapterId']);
+         Helper::redirect('chapters/' . $_POST['chapterId'] . '#comments');
     }
 
  }
