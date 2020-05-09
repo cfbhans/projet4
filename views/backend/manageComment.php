@@ -17,17 +17,15 @@ if(isset($_SESSION['connected'])) {
 		?>
 		<div class="input-group mb-3">
 	    <p class="form-control comment-form" ><b>Commentaires à modérer : </b> <?= $comment->getComment(); ?> </p>
-	        <div class="input-group-append">
-			<form class="btn-form" action="<?= cf_link('comments/' . $comment->getId() . '/edit'); ?>" method="get">
-				<button class="btn-secondary" type="submit" name="moderationComment">Modérer</button>
-			</form>
-			
-				<button class="btn-danger" type="button" data-toggle="modal" data-target="#deleteCommentModal">Supprimer</button>
-			
-			<form class="btn-form" action="<?= cf_link('comments/' . $comment->getId() .'/confirm'); ?>" method="post">
-				<button class="btn-success" type="submit" name="confirmComment">Confirmer</button>
-			</form>    
-	        </div> 
+	            <div class="input-group-append">
+                    <a class="btn-secondary" type="button" href="<?= cf_link('comments/' . $comment->getId() . '/edit'); ?>">Modérer</a>
+                    
+                    <button class="btn-danger" type="button" data-toggle="modal" data-target="#deleteCommentModal">Supprimer</button>
+                    
+                    <form class="btn-form" action="<?= cf_link('comments/' . $comment->getId() .'/confirm'); ?>" method="post">
+                        <button class="btn-success" type="submit" name="confirmComment">Confirmer</button>
+                    </form>    
+                </div>
         </div>
 
 

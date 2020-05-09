@@ -73,6 +73,33 @@ class Chapter extends Model
 		
 	}
 
+	public function createChapter(Chapter $chapter){
+		$q = $this->db->prepare('INSERT INTO chapters(title, content, createdat) VALUES (:newPostTitle, :newPostContent, NOW())');
+
+		$newChapter = $q->execute([
+			':newPostTitle'		=> $chapter->getTitle(),
+			':newPostContent'	=> $chapter->getContent()
+		]);
+
+		return $newChapter;
+	}
+
+
+	/**
+     * Suppression du chapitre
+     */
+	public function delete($id) {
+		$del = $this->db->prepare('DELETE FROM chapters WHERE id = :id');
+		$delCom = $this->db->prepare('DELETE FROM comments WHERE chapterId = :chapterId');
+		$del->execute([
+			'id' => $id
+		]);
+
+		$delCom->execute([
+			'chapterId' => $id
+		]);
+	}
+
 
 	public function getId(): ?int {
 		return $this->id; 
@@ -132,35 +159,6 @@ class Chapter extends Model
 		}
 		$lastSpace = strpos($content, ' ', $limit);
 		return substr($content, 0, $lastSpace).'...';
-	}
-
-	public function createChapter(Chapter $chapter){
-		if($this->errors)
-
-		$q = $this->db->prepare('INSERT INTO chapters(title, content, createdat) VALUES (:newPostTitle, :newPostContent, NOW())');
-
-		$newChapter = $q->execute([
-			':newPostTitle'		=> $chapter->getTitle(),
-			':newPostContent'	=> $chapter->getContent()
-		]);
-
-		return $newChapter;
-	}
-
-
-	/**
-     * Suppression du chapitre
-     */
-	public function delete($id) {
-		$del = $this->db->prepare('DELETE FROM chapters WHERE id = :id');
-		$delCom = $this->db->prepare('DELETE FROM comments WHERE chapterId = :chapterId');
-		$del->execute([
-			'id' => $id
-		]);
-
-		$delCom->execute([
-			'chapterId' => $id
-		]);
 	}
 
 

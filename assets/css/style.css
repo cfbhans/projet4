@@ -124,10 +124,6 @@ form {
 	border: none!important;
 }
 
-#manageComment .comment-form {
-	height: auto;
-}
-
 .btn-danger, .btn-success, .btn-secondary {
 	border-radius: 5px;
 }

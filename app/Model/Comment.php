@@ -14,6 +14,7 @@ class Comment extends Model
 	private $enum;
 
 	const INVALID_AUTHOR = "L'auteur n'est pas valide";
+	const INVALID_LENGTH = "La longueur du champ saisi n'est pas valide";
 	const INVALID_COMMENT = "Le commentaire n'est pas valide";
 
 /*Requetes SQL*/
@@ -49,14 +50,10 @@ class Comment extends Model
         $data = $q->fetch();
 
         if(!$data) {
-        	die("il y a une erreur de commentaire");
-        }
-        
-        $comment = new Comment();
-
-        if(!$data) {
 			$this->errors[] = self::INVALID_PAGE;
 		}
+        
+        $comment = new Comment();
 
 		$comment->hydrate($comment, $data);
 
@@ -68,23 +65,20 @@ class Comment extends Model
      * @param int $id
      */
     public function save(Comment $comment) {
-        if(count($this->errors) === 0) {
-        
-            $q = $this->db->prepare('INSERT INTO comments(chapterId, author, comment, commentedAt) 
-            	VALUES (:chapterId, :author, :comment, NOW())');
-
-            $comment = $q->execute([
-                ':chapterId'	=> $comment->getChapterId(),
-                ':author'		=> $comment->getAuthor(), 
-                ':comment'		=> $comment->getComment()
-            ]);
-
-            return $comment;
-
-           /* $this->hydrate($this, $data);//A QUOI SERT CE hydrate?????
-
-        	return $this;*/
+        if($this->hasErrors()) {
+        	return ;
         }
+        
+        $q = $this->db->prepare('INSERT INTO comments(chapterId, author, comment, commentedAt) 
+        	VALUES (:chapterId, :author, :comment, NOW())');
+
+        $comment = $q->execute([
+            ':chapterId'	=> $comment->getChapterId(),
+            ':author'		=> $comment->getAuthor(), 
+            ':comment'		=> $comment->getComment()
+        ]);
+
+        return $comment;
     }
 
     /**
@@ -92,14 +86,12 @@ class Comment extends Model
      * @param int $id
      * @return bool
      */
-	public function reported($id) {
+	public function report($id) {
 		$q = $this->db->prepare('UPDATE comments SET isReported = 1, enum = "" WHERE id = :id');
-		$reported = $q->execute([
+		$report = $q->execute([
 			'id' => $id
 		]);
-		var_dump($reported);
-		die();
-		return $reported;
+		return $report;
 	}
 
 	/**
@@ -130,7 +122,7 @@ class Comment extends Model
      * Modification du commentaires signalés
      */
 	public function update(Comment $comment, $id) {
-		$q = $this->db->prepare('UPDATE comments SET author= :author, comment = :comment, isReported = :isReported, enum = :enum WHERE id = :id');
+		$q = $this->db->prepare('UPDATE comments SET author = :author, comment = :comment, isReported = :isReported, enum = :enum WHERE id = :id');
 		
 		$q->execute([
 			'id' 		=> $id,
@@ -139,7 +131,7 @@ class Comment extends Model
 			'isReported'=> 0,
 			'enum'		=> "confirmed"
 		]);
-		
+
 		return $q;
 	}
 
@@ -213,8 +205,11 @@ class Comment extends Model
 	}
 
 	public function setAuthor(string $author) {
-		if (!is_string($author) || empty($author) || strlen($author) > 20) {
+		if (!is_string($author) || empty($author) ) {
 	      $this->errors[] = self::INVALID_AUTHOR;
+	    }
+	    else if(strlen($author) > 20) {
+	    	 $this->errors[] = self::INVALID_LENGTH;
 	    }
 	    else {
 	      $this->author = $author;

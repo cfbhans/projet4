@@ -25,19 +25,15 @@ class CommentController extends Controller
 
         $comment->hydrate($comment, $data);
 
-        if($comment->hasErrors()) {
-            $this->chapter($chapterId);
-        }
-
         $comment->save($comment);
 
         Helper::redirect('chapters/' . $chapterId);
     }
 
-    public function reported($id) {
-        $reported = (new Comment)->reported($id);
+    public function report($id) {
+        $report = (new Comment)->report($id);
 
-         Helper::redirect('chapters/' . $_POST['chapterId'] . '#comments');
+        Helper::redirect('chapters/' . $_POST['chapterId'] . '#comments');
     }
 
  }

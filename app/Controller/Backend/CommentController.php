@@ -38,25 +38,26 @@ class CommentController extends Controller
     public function update($id){
         $comment = new Comment();
 
-            $data = [
-                'author'    => $this->purify($_POST['upAuthor']),
-                'comment'   => $this->purify($_POST['upComment']),
-                'enum'      => 'approved',
-                'isReported'=> 0
-            ];
+        $data = [
+            'author'    => $this->purify($_POST['upAuthor']),
+            'comment'   => $this->purify($_POST['upComment']),
+            'enum'      => 'approved',
+            'isReported'=> 0
+        ];
+        
+        $comment->hydrate($comment, $data);
 
+        $comment->update($comment, $id);
 
-            $comment->hydrate($comment, $data);
-
-            $comment->update($comment, $id);
-
-            Helper::redirect('comments/comment');
+        Helper::redirect('chapters');
     }
     
     public function delete($id){
-        $comment = (new Comment)->delete($id);
+        $comment = new Comment;
 
-       Helper::redirect('comments/comment');
+        $comment->delete($id);
+
+        Helper::redirect('chapters');
     }
 
 
@@ -65,7 +66,7 @@ class CommentController extends Controller
 
         $comment->confirm($id);
 
-        Helper::redirect('comments/comment');
+        Helper::redirect('chapters');
     }
 
  }

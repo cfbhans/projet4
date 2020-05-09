@@ -23,14 +23,12 @@ $router->map( 'GET', '/contact', function() {
 =======================================*/
 /*List of chapters*/
 $router->map( 'GET', '/chapters', function() {
-	//die('123');
 	$controller = new App\Controller\Frontend\ChapterController();
 	$controller->index();
 });
 
 /*Chapter by id*/
 $router->map( 'GET', '/chapters/[i:id]', function($id) {
-	//die('123');
 	$controller = new App\Controller\Frontend\ChapterController();
 	$controller->show($id);
 });
@@ -80,10 +78,10 @@ $router->map('GET', '/comments/comment', function() {
 	$controller->index();
 });
 
-/*reported comment*/
+/*to report comment*/
 $router->map( 'POST', '/comments/[i:id]/report', function($id) {/*report*/
 	$controller = new App\Controller\Frontend\CommentController();
-	$controller->reported($id);
+	$controller->report($id);
 });
 
 /*deleted comment*/
@@ -98,8 +96,8 @@ $router->map( 'GET', '/comments/[i:id]/edit', function($id) {/*edit*/
 	$controller->edit($id);
 });
 
-/*updated comment*/
-$router->map('POST', '/comments/[i:id]/moderate', function($id) {/*moderate*/
+/*moderation of comment*/
+$router->map('POST', '/comments/[i:id]/moderate', function($id) {
 	$controller = new App\Controller\Backend\CommentController();
 	$controller->update($id);
 });
@@ -128,7 +126,7 @@ $router->map('POST', '/users', function() {
 
 /*Connection*/
 $router->map('GET', '/users/connection', function() {
-	$controller = new App\Controller\Frontend\USerController();
+	$controller = new App\Controller\Frontend\UserController();
 	$controller->connection();
 });
 

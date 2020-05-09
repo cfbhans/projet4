@@ -30,7 +30,7 @@ class ChapterController extends Controller
 
 			$chapter->createChapter($chapter);
 
-			 Helper::redirect('chapters');
+			Helper::redirect('chapters');
 			 
 	}
 
@@ -61,15 +61,12 @@ class ChapterController extends Controller
 	}
 
 	 public function delete($id){
-	 	
-	 	$chapter = (new Chapter)->delete($id);
+	 	$chapter = (new Chapter)->find($id);
+	 	$chapter->delete($id);
+        
+        Helper::redirect('chapters');
        
-
-        $chapters = (new Chapter)->all();
-        $this->render('frontend/listChapters',[
-            'chapters' => $chapters,
-        ]);
-    }
+      }
 
 	
 }

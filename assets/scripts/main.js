@@ -17,13 +17,4 @@
 	});
 
 	//modal script
-	$('#deleteCommentModal').on('shown.bs.modal', function () {
-	  $('#myInput').trigger('focus')
-	})
-	//$('.modal-content').html('');
-	$('#deleteCommentModal').on('hidden.bs.modal', function () {
-		window.location.reload(true);
-	});
-	$('#myModal').modal('hide');
-
-
+	
