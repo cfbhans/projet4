@@ -8,20 +8,23 @@ use \App\Model\User;
 use \App\Model\Admin;
 use \App\Controller\Controller;
 
-/**
- * user controller
- */
+
 class UserController extends Controller
 {
+	public function __construct(){
+		if(!isset($_SESSION['connected'])) {
+			header('Location: /');
+		}
+	}
 
-    /*Gestion des administrateurs*/
+	/*Gestion des administrateurs*/
 	public function admin() {
 		if (isset($_SESSION['connected'])){
 			$this->render('backend/administration', ['']);
 		}
 	}
 
-    /*listes des utilisateurs*/
+	/*listes des utilisateurs*/
 	public function list(){
 		$users = (new User)->unregister();
 
@@ -29,33 +32,34 @@ class UserController extends Controller
 			'users' => $users
 		]);
 	}
-    /* deconnexion */
+	
+	/* deconnexion */
 	public function logout(){
 		if (isset($_SESSION['connected'])) {
-		   	$_SESSION = array();
-    		session_destroy();
-    	}
-    	
-    	Helper::redirect(" ");
-    }
+			$_SESSION = array();
+			session_destroy();
+		}
+		
+		Helper::redirect(" ");
+	}
 
 
-    /* administrateur */
-    public function setAdmin($id){
-    	$users = new User();
+	/* rendre administrateur */
+	public function setAdmin($id){
+		$users = new User();
 
-    	$users->switchAdmin($id, true);
+		$users->switchAdmin($id, true);
 
-    	Helper::redirect('users/user');
-    	
-    }
+		Helper::redirect('users/user');
+		
+	}
 
-    /*suppression des accessibilités d'administrateur*/
-    public function unsetAdmin($id){
-        $users = new User();
+	/*suppression des accessibilités d'administrateur*/
+	public function unsetAdmin($id){
+		$users = new User();
 
-        $users->switchAdmin($id, false);
+		$users->switchAdmin($id, false);
 
-        Helper::redirect('users/user');
-    }
+		Helper::redirect('users/user');
+	}
 }

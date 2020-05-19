@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title><?= $title ?? "Billetsimplepourl'Alaska" ?></title>
+	<title>Billet simple pour l'Alaska</title>
 
 	<link rel="stylesheet" href="<?= cf_link("assets/css/style.css") ?>" />
 	<link rel="shortcut icon" href="<?= cf_link("assets/images/favicon.png") ?>" type="image/x-icon">

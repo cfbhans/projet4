@@ -3,10 +3,6 @@
 </section>
 
 <div>
-	<div class="errors">
-		
-	</div>
-
 	<!-- display form register -->
 	<div id="register">
 		<form  id="register-form" action="<?= cf_link('users')?>" method="POST">

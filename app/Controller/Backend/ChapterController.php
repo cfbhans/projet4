@@ -8,11 +8,14 @@ use \App\Model\User;
 use \App\Model\Admin;
 use \App\Controller\Controller;
 
-/**
- * chapter controller
- */
+
 class ChapterController extends Controller
 {
+	public function __construct(){
+		if(!isset($_SESSION['connected'])) {
+			header('Location: /');
+		}
+	}
 
 	public function create(){
 		$this->render('backend/writeChapter', ['']);
@@ -21,17 +24,16 @@ class ChapterController extends Controller
 	public function store() {
 		$chapter = new Chapter();
 
-			$data = [
-				'title'     => $this->purify($_POST['newPostTitle']),
-				'content'   => $_POST['newPostContent']
-			];
+		$data = [
+			'title'     => $this->purify($_POST['newPostTitle']),
+			'content'   => $_POST['newPostContent']
+		];
 
-			$chapter->hydrate($chapter, $data);
+		$chapter->hydrate($chapter, $data);
 
-			$chapter->createChapter($chapter);
+		$chapter->createChapter($chapter);
 
-			Helper::redirect('chapters');
-			 
+		Helper::redirect('chapters');		 
 	}
 
 	public function edit($id) {
@@ -45,28 +47,23 @@ class ChapterController extends Controller
 	public function update($id){
 		$chapter = new Chapter();
 
-		
-			$data = [
-				'title'     => $this->purify($_POST['updateTitle']),
-				'content'   => $_POST['updateContent']
-			];
+		$data = [
+			'title'     => $this->purify($_POST['updateTitle']),
+			'content'   => $_POST['updateContent']
+		];
 
+		$chapter->hydrate($chapter, $data);
 
-			$chapter->hydrate($chapter, $data);
+		$chapter->update($chapter, $id);
 
-			$chapter->update($chapter, $id);
-
-			Helper::redirect('chapters/' . $id);
-		
+		Helper::redirect('chapters/' . $id);
 	}
 
 	 public function delete($id){
-	 	$chapter = (new Chapter)->find($id);
-	 	$chapter->delete($id);
-        
-        Helper::redirect('chapters');
-       
-      }
+		$chapter = (new Chapter)->find($id);
+		$chapter->delete($id);
+		
+		Helper::redirect('chapters');
+	}
 
-	
 }

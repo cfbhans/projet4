@@ -3,18 +3,18 @@ namespace App\Tools;
 
 class Helper{ 
 	private static $path = '/projet4/';
-  	private static $absolutePath = '/projet4/';
+	private static $absolutePath = '/projet4/';
 
 	public static function redirect($uri){
 		header("Location: " . self::$path . $uri);
 	}
 
 	public static function link($url){
-      return self::$path . $url;
+		return self::$path . $url;
 	}
   
 	public static function asset($url){
-      return self::$absolutePath . '/assets/' . $url;
+		return self::$absolutePath . '/assets/' . $url;
 	}
 
 	public static function hasErrors() {

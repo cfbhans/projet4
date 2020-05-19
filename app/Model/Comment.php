@@ -17,75 +17,71 @@ class Comment extends Model
 	const INVALID_LENGTH = "La longueur du champ saisi n'est pas valide";
 	const INVALID_COMMENT = "Le commentaire n'est pas valide";
 
-/*Requetes SQL*/
-  	/**
-     * récupère les commentaires d'un article à partir de l'id de l'article.
-     * @param int $id
-     */
+	
 	public function allComments($id) {
-	    $q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y à %Hh%i\') AS commented, isReported, enum FROM comments WHERE chapterId = ? ORDER BY commentedAt DESC');
-	    $q->execute(array($id));
+		$q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y à %Hh%i\') AS commented, isReported, enum FROM comments WHERE chapterId = ? ORDER BY commentedAt DESC');
+		$q->execute(array($id));
 
-	    $results = $q->fetchAll(\PDO::FETCH_ASSOC);
+		$results = $q->fetchAll(\PDO::FETCH_ASSOC);
 
-	    if(!$results) {
-	    	return [];
-	    }
+		if(!$results) {
+			return [];
+		}
 
-	    foreach($results as $result) {
-            $comment = new Comment();
-            $comment->hydrate($comment, $result);
-            $comments[] = $comment;
-       	}
+		foreach($results as $result) {
+			$comment = new Comment();
+			$comment->hydrate($comment, $result);
+			$comments[] = $comment;
+		}
 
-    	return $comments;
+		return $comments;
 	}
 
 	public function find($id) {        
-        $q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y %Hh%i\'), isReported, enum AS commentedat FROM comments WHERE id = :id');
-        $q->execute([
-        	'id' => $id
-        ]);
+		$q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y %Hh%i\'), isReported, enum AS commentedat FROM comments WHERE id = :id');
+		$q->execute([
+			'id' => $id
+		]);
 
-        $data = $q->fetch();
+		$data = $q->fetch();
 
-        if(!$data) {
+		if(!$data) {
 			$this->errors[] = self::INVALID_PAGE;
 		}
-        
-        $comment = new Comment();
+		
+		$comment = new Comment();
 
 		$comment->hydrate($comment, $data);
 
-        return $comment;
-    }
+		return $comment;
+	}
 
 	/**
-     * insère les commentaires dans la db à partir de l'id de l'article.
-     * @param int $id
-     */
-    public function save(Comment $comment) {
-        if($this->hasErrors()) {
-        	return ;
-        }
-        
-        $q = $this->db->prepare('INSERT INTO comments(chapterId, author, comment, commentedAt) 
-        	VALUES (:chapterId, :author, :comment, NOW())');
+	* insère les commentaires dans la db à partir de l'id de l'article.
+	* @param int $id
+	*/
+	public function save(Comment $comment) {
+		if($this->hasErrors()) {
+			return ;
+		}
+		
+		$q = $this->db->prepare('INSERT INTO comments(chapterId, author, comment, commentedAt) 
+			VALUES (:chapterId, :author, :comment, NOW())');
 
-        $comment = $q->execute([
-            ':chapterId'	=> $comment->getChapterId(),
-            ':author'		=> $comment->getAuthor(), 
-            ':comment'		=> $comment->getComment()
-        ]);
+		$comment = $q->execute([
+			':chapterId'	=> $comment->getChapterId(),
+			':author'		=> $comment->getAuthor(), 
+			':comment'		=> $comment->getComment()
+		]);
 
-        return $comment;
-    }
+		return $comment;
+	}
 
-    /**
-     * signalement d'un commentaire page article
-     * @param int $id
-     * @return bool
-     */
+	/**
+	* signalement d'un commentaire page article
+	* @param int $id
+	* @return bool
+	*/
 	public function report($id) {
 		$q = $this->db->prepare('UPDATE comments SET isReported = 1, enum = "" WHERE id = :id');
 		$report = $q->execute([
@@ -95,32 +91,32 @@ class Comment extends Model
 	}
 
 	/**
-     * Récuperation des commentaires signalés
-     */	
+	* Récuperation des commentaires signalés
+	*/	
 	public function allCommentsReported() {
-	    $q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y à %Hh%i\') AS commented, isReported FROM comments WHERE isReported = 1 ORDER BY commentedAt DESC');
-	    $q->execute(['']);
+		$q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y à %Hh%i\') AS commented, isReported FROM comments WHERE isReported = 1 ORDER BY commentedAt DESC');
+		$q->execute(['']);
 
-	    $results = $q->fetchAll(\PDO::FETCH_ASSOC);
+		$results = $q->fetchAll(\PDO::FETCH_ASSOC);
 
-	    if(!$results) {
-	    	return [];
-	    }
+		if(!$results) {
+			return [];
+		}
 
-	    foreach($results as $result) {
-            $comment = new Comment();
+		foreach($results as $result) {
+			$comment = new Comment();
 
-            $comment->hydrate($comment, $result);
-            
-            $comments[] = $comment;
-       	}
+			$comment->hydrate($comment, $result);
+			
+			$comments[] = $comment;
+		}
 
-    	return $comments;
+		return $comments;
 	}
 
 	/**
-     * Modification du commentaires signalés
-     */
+	* Modification du commentaires signalés
+	*/
 	public function update(Comment $comment, $id) {
 		$q = $this->db->prepare('UPDATE comments SET author = :author, comment = :comment, isReported = :isReported, enum = :enum WHERE id = :id');
 		
@@ -136,8 +132,8 @@ class Comment extends Model
 	}
 
 	/**
-     * Suppression du commentaires signalés
-     */
+	* Suppression du commentaires signalés
+	*/
 	public function delete($id) {
 		$q = $this->db->prepare('DELETE FROM comments WHERE id = :id');
 		$deleted = $q->execute([
@@ -145,9 +141,9 @@ class Comment extends Model
 		]);
 	}
 
-/**
-     * Confirmation du commentaires signalés
-     */
+	/**
+	* Confirmation du commentaires signalés
+	*/
 	public function confirm($id) {
 		$q = $this->db->prepare('UPDATE comments SET isReported = 0, enum = "confirmed" WHERE id = :id');
 		$q->execute([
@@ -156,10 +152,9 @@ class Comment extends Model
 	}
 
 	/**
-     * Validation du commentaires signalés
-     */
+	* Validation du commentaires signalés
+	*/
 
-/*GETTERS*/
 	public function getId(): ?int {
 		return $this->id; 
 	}
@@ -189,7 +184,6 @@ class Comment extends Model
 	}
 
 
-/*SETTERS*/
 	public function setId($id) {
 		$id = (int)$id;
 		if($id > 0) {
@@ -206,14 +200,14 @@ class Comment extends Model
 
 	public function setAuthor(string $author) {
 		if (!is_string($author) || empty($author) ) {
-	      $this->errors[] = self::INVALID_AUTHOR;
-	    }
-	    else if(strlen($author) > 20) {
-	    	 $this->errors[] = self::INVALID_LENGTH;
-	    }
-	    else {
-	      $this->author = $author;
-	    }
+		  $this->errors[] = self::INVALID_AUTHOR;
+		}
+		else if(strlen($author) > 20) {
+			 $this->errors[] = self::INVALID_LENGTH;
+		}
+		else {
+		  $this->author = $author;
+		}
 	}
 
 	public function setComment(string $comment) {

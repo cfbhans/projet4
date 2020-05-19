@@ -15,5 +15,3 @@
 	Suivez ce lien pour lire les différents chapitres :
 	<em><a href ="<?= cf_link("chapters"); ?>">Les chapitres</a></em>
 </p>
-
-

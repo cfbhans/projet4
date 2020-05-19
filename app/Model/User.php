@@ -21,12 +21,6 @@ class User extends Model
 	const INVALID_CONFIRM = "Le mot de passe n'est pas vérifié";
 	const INVALID_STATUS = "Vous n'avez pas le statut pour vous connecter à l'espace d'administration";
 
-/*Requetes SQL*/
-	/**
-	* Ajout d'un membre à la db
-	 * @param int $id
-	  * @param int $hashed_password
-	*/
 	public function create(User $user) {
 		$q = $this->db->prepare('INSERT INTO users(email, password) VALUES(:email, :password)');
 		$q->execute([
@@ -62,7 +56,6 @@ class User extends Model
 		return $usersAdmin;
 	}
 
-/*GETTERS*/
 	public function getId(): int {
 		return $this->id; 
 	}
@@ -83,7 +76,6 @@ class User extends Model
 		return !!$this->isAdmin;
 	}
 
-/*SETTERS*/
 	public function setId($id) {
 		$id = (int)$id;
 		if($id > 0) {
@@ -196,6 +188,5 @@ class User extends Model
 			'id'		=> $id,
 			'isAdmin'	=> (int)$isAdmin
 		]);
-
 	}
 }

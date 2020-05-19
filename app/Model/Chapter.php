@@ -14,52 +14,46 @@ class Chapter extends Model
 	const INVALID_CONTENT = "Le contenu du chapitre n'est pas valide";
 	const INVALID_PAGE = "La page demandée n'est pas accessible";
 
-	/*Méthode SQL */
 	public function all(): ?array {
 		
-    	$chapters = [];
-    	$q = $this->db->query('SELECT id, title, content, DATE_FORMAT(createdAt, \'%d/%m/%Y %Hh%i\') AS createdat FROM chapters');
+		$chapters = [];
+		$q = $this->db->query('SELECT id, title, content, DATE_FORMAT(createdAt, \'%d/%m/%Y %Hh%i\') AS createdat FROM chapters');
 
-	    $results = $q->fetchAll(\PDO::FETCH_ASSOC);
+		$results = $q->fetchAll(\PDO::FETCH_ASSOC);
 
-        foreach ($results as $result) {
-        	$chapter = new Chapter();
-        	$chapter->hydrate($chapter, $result);
-        	$chapters[] = $chapter;
-        }
+		foreach ($results as $result) {
+			$chapter = new Chapter();
+			$chapter->hydrate($chapter, $result);
+			$chapters[] = $chapter;
+		}
 
-        return $chapters;
-    }
+		return $chapters;
+	}
 
 
-    public function find($id) {        
-        $q = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(createdAt, \'%d/%m/%Y %Hh%i\') AS createdat FROM chapters WHERE id = :id');
-        $q->execute([
-        	'id' => $id
-        ]);
+	public function find($id) {
+		$q = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(createdAt, \'%d/%m/%Y %Hh%i\') AS createdat FROM chapters WHERE id = :id');
+		$q->execute([
+			'id' => $id
+		]);
 
-        $data = $q->fetch();
-        if(!$data) {
-        	die("il y a une erreur de chapitre");
-        }
-        
-        $chapter = new Chapter();
+		$data = $q->fetch();
 
-        if(!$data) {
+		if(!$data) {
+			die("il y a une erreur de chapitre");
+		}
+		
+		$chapter = new Chapter();
+
+		if(!$data) {
 			$this->errors[] = self::INVALID_PAGE;
 		}
 
 		$chapter->hydrate($chapter, $data);
 		
-        return $chapter;
-    }
-
-    /**
-     * modification d'un chapitre
-     * @param string chapter
-     * @param int $id
-     * @return bool
-     */
+		return $chapter;
+	}
+	
 	public function update(Chapter $chapter, $id) {
 		$q = $this->db->prepare('UPDATE chapters SET title = :title, content = :content, createdat = NOW() WHERE id = :id');
 		
@@ -84,10 +78,6 @@ class Chapter extends Model
 		return $newChapter;
 	}
 
-
-	/**
-     * Suppression du chapitre
-     */
 	public function delete($id) {
 		$del = $this->db->prepare('DELETE FROM chapters WHERE id = :id');
 		$delCom = $this->db->prepare('DELETE FROM comments WHERE chapterId = :chapterId');
@@ -100,6 +90,13 @@ class Chapter extends Model
 		]);
 	}
 
+	public function excerpt(string $content, int $limit = 200) {
+		if (strlen($content) <= $limit) {
+			return $content;
+		}
+		$lastSpace = strpos($content, ' ', $limit);
+		return substr($content, 0, $lastSpace).'...';
+	}
 
 	public function getId(): ?int {
 		return $this->id; 
@@ -152,12 +149,4 @@ class Chapter extends Model
 		$this->createdat = $createdat;
 	}
 	
-
-	public function excerpt(string $content, int $limit = 200) {
-		if (strlen($content) <= $limit) {
-			return $content;
-		}
-		$lastSpace = strpos($content, ' ', $limit);
-		return substr($content, 0, $lastSpace).'...';
-	}
 }

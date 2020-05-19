@@ -2,21 +2,21 @@ html {
 	height: 100%;
 }
 body {
-    margin: 0;
-    height: 100%;
-    position: relative;
+	margin: 0;
+	height: 100%;
+	position: relative;
 }
 
 header {
 	background-image: url('../images/header-accueil.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position:top;
-    height: 500px;
-    margin-top: -50px;
-    display: flex!important;
-    align-items: center;
-    justify-content: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position:top;
+	height: 500px;
+	margin-top: -50px;
+	display: flex!important;
+	align-items: center;
+	justify-content: center;
 }
 
 #header-title {
@@ -34,22 +34,16 @@ header {
 	margin-top: 80px;
 }
 
-/*A verifier si le menu s'affiche ou non au clique sur l'icone en responsive*/
-/*.collapse:not(.show) {
-    display: flex!important;
-}
-*/
-
 .container {
-    max-width: 1200px;
-    width: 100%;
-    max-height: 100%;
-    margin: auto;
+	max-width: 1200px;
+	width: 100%;
+	max-height: 100%;
+	margin: auto;
 }
 
 .container-fluid {
-    padding: 0!important;
-    margin: 0!important;
+	padding: 0!important;
+	margin: 0!important;
 }
 
 .btn {
@@ -75,15 +69,15 @@ header {
 }
 
 .chapters_id .paragraphChapter {
-    color: #808080;
-    background: #f2f2f2;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 15px;
+	color: #808080;
+	background: #f2f2f2;
+	padding: 20px;
+	margin-bottom: 25px;
+	border-radius: 15px;
 }
 
 .chapters_id {
-    margin:auto;
+	margin:auto;
 }
 
 .chapters_id .paragraphChapter .btnListChapter {
@@ -97,8 +91,8 @@ header {
 }
 
 a {
-    text-decoration: none;
-    color: blue;
+	text-decoration: none;
+	color: blue;
 }
 
 form {
