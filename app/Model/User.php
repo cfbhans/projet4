@@ -47,7 +47,7 @@ class User extends Model
 		return $data;
 	}
 
-	public function unregistered() {
+	public function unregister() {
 		$usersAdmin = [];
 
 		$q = $this->db->query('SELECT id, email, isAdmin FROM users');
@@ -157,7 +157,7 @@ class User extends Model
 		return true;
 	}
 
-	public function connected() {
+	public function connect() {
         if(session_status() === PHP_SESSION_NONE) {
         	//session_start();
             $_SESSION['connected'] = $this->getEmail();
@@ -197,6 +197,5 @@ class User extends Model
 			'isAdmin'	=> (int)$isAdmin
 		]);
 
-		/*return $q;*/
 	}
 }

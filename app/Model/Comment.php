@@ -150,7 +150,7 @@ class Comment extends Model
      */
 	public function confirm($id) {
 		$q = $this->db->prepare('UPDATE comments SET isReported = 0, enum = "confirmed" WHERE id = :id');
-		$updated = $q->execute([
+		$q->execute([
 			'id' => $id
 		]);
 	}

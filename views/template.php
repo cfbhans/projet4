@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title><?= $title ?? "Billetsimplepourl'Alaska" ?></title>
 
-	<link rel="stylesheet" href="<?= App\Tools\Helper::asset("css/style.css") ?>" />
-	<link rel="shortcut icon" href="<?= App\Tools\Helper::asset("images/favicon.png") ?>" type="image/x-icon">
+	<link rel="stylesheet" href="<?= cf_link("assets/css/style.css") ?>" />
+	<link rel="shortcut icon" href="<?= cf_link("assets/images/favicon.png") ?>" type="image/x-icon">
 	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous" />
 
@@ -124,6 +124,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <script src="<?= App\Tools\Helper::asset("scripts/main.js") ?>"></script>
+    <script src="<?= cf_link("assets/scripts/main.js") ?>"></script>
 </body>
 </html>

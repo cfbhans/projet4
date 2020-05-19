@@ -72,7 +72,7 @@ class UserController extends Controller
 
         $user->hydrate($user, $data);
 
-        $user->connected();
+        $user->connect();
 
 
         $this->render('backend/administration',['']);

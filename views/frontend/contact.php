@@ -1,4 +1,4 @@
-<h1>Contactez-moi</h1>
+<h2>Contactez-moi</h2>
 
 <hr>
 

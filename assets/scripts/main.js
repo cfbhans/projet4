@@ -12,7 +12,7 @@
 		hidden_input: false,
 	    forced_root_block : "", 
 	    force_br_newlines : true,
-	    force_p_newlines : false,
+	    force_p_newlines : true,
 		/*inline: true, !!!!!! LIGNE BLOQUANTE POUR L'INITIALISATION  de tinyMCE !!!!!! */
 	});
 

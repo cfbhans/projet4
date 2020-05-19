@@ -74,7 +74,7 @@ header {
 	padding: 15px;
 }
 
-#chapters .paragraphChapter {
+.chapters_id .paragraphChapter {
     color: #808080;
     background: #f2f2f2;
     padding: 20px;
@@ -82,11 +82,11 @@ header {
     border-radius: 15px;
 }
 
-#chapters {
+.chapters_id {
     margin:auto;
 }
 
-#chapters .paragraphChapter .btnListChapter {
+.chapters_id .paragraphChapter .btnListChapter {
 	margin-top: 15px;
 }
 
@@ -126,6 +126,17 @@ form {
 
 .btn-danger, .btn-success, .btn-secondary {
 	border-radius: 5px;
+}
+
+#moderate-comment{
+	padding-left: 8px;
+	padding-right: 8px;
+	margin: 2px;
+	padding-top: 3px;
+}
+
+#moderate-comment:hover{
+	text-decoration: none!important;
 }
 
 .btn-form {

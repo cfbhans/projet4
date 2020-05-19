@@ -10,33 +10,26 @@ if(isset($_SESSION['connected'])) {
 }
 ?>
 
-<h1>Les chapitres du livre</h1>
+<h2>Les chapitres du livre</h2>
 
-    <?php 
-    foreach($chapters as $chapter) { 
-    ?>
-    <a href="chapters/<?= $chapter->getId() ?>" class="chapterLink">
-        <div id="chapters">
+<?php foreach($chapters as $chapter) { ?>
+    <div class="chapters_id">
 
-            <div class="paragraphChapter">
+        <div class="paragraphChapter">
+            <a href="chapters/<?= $chapter->getId() ?>" class="chapterLink">
+            	<h3><?= $chapter->getTitle(); ?></h3>
                 <?= $chapter->excerpt($chapter->getContent()); ?>
                 <br />
-                <a class ="btn btnListChapter" href="chapters/<?= $chapter->getId() . "#comment-form" ?>">Commentaires</a>
-                <?php
-                if(isset($_SESSION['connected'])) {
-                ?>
-                <form class="btn-form" action="<?= cf_link('chapters/' . $chapter->getId() .'/delete'); ?>" method="post">
-                    <button class="btn-danger" type="submit" name="deleteChapter">Supprimer</button>
-                </form>
-                <?php
-                }
-                ?>            
-            </div>
-
+                <?php if(isset($_SESSION['connected'])) { ?>
+                    <form class="btn-form" action="<?= cf_link('chapters/' . $chapter->getId() .'/delete'); ?>" method="post">
+                        <button class="btn-danger" type="submit" name="deleteChapter">Supprimer</button>
+                    </form>
+                <?php } ?>            
+            </a>
+            <a class="btn btnListChapter" href="chapters/<?= $chapter->getId() . "#comment-form" ?>">Commentaires</a>
         </div>
-    </a>
+
+    </div>
     
-    <?php
-    }
-    ?>
+<?php } ?>
 

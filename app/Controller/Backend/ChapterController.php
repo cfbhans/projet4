@@ -54,7 +54,7 @@ class ChapterController extends Controller
 
 			$chapter->hydrate($chapter, $data);
 
-			$chapter->updated($chapter, $id);
+			$chapter->update($chapter, $id);
 
 			Helper::redirect('chapters/' . $id);
 		

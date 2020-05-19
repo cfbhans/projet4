@@ -23,7 +23,7 @@ class UserController extends Controller
 
     /*listes des utilisateurs*/
 	public function list(){
-		$users = (new User)->unregistered();
+		$users = (new User)->unregister();
 
 		$this->render('backend/userAdmin', [
 			'users' => $users

@@ -13,30 +13,18 @@ use \App\Controller\Controller;
  */
 class CommentController extends Controller
 {
-	
-    /* Gestion des commentaires signalés*/
-    public function index(){
-        $chapter = new Chapter();
-        $comments = (new Comment)->allCommentsReported();
-
-        $this->render('backend/manageComment',[
-            'chapter' => $chapter,
-            'comments' => $comments
-        ]);
-    }
 
     public function edit($id){
         $comment = (new Comment)->find($id);
-        $chapter = new Chapter();
 
         $this->render('backend/moderation', [
-            'comment'  => $comment,
-            'chapter'  => $chapter
+            'comment'  => $comment
         ]);
     }
 
     public function update($id){
         $comment = new Comment();
+        $chapterId = $comment->find($id)->getChapterId();
 
         $data = [
             'author'    => $this->purify($_POST['upAuthor']),
@@ -49,24 +37,26 @@ class CommentController extends Controller
 
         $comment->update($comment, $id);
 
-        Helper::redirect('chapters');
+         Helper::redirect('chapters/'. $chapterId);
     }
     
     public function delete($id){
         $comment = new Comment;
+        $chapterId = $comment->find($id)->getChapterId();
 
         $comment->delete($id);
 
-        Helper::redirect('chapters');
+        Helper::redirect('chapters/'. $chapterId);
     }
 
 
     public function confirm($id){
        $comment = new Comment();
+       $chapterId = $comment->find($id)->getChapterId();
 
         $comment->confirm($id);
 
-        Helper::redirect('chapters');
+         Helper::redirect('chapters/'. $chapterId);
     }
 
  }

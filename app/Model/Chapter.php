@@ -60,16 +60,16 @@ class Chapter extends Model
      * @param int $id
      * @return bool
      */
-	public function updated(Chapter $chapter, $id) {
+	public function update(Chapter $chapter, $id) {
 		$q = $this->db->prepare('UPDATE chapters SET title = :title, content = :content, createdat = NOW() WHERE id = :id');
 		
-		$updated = $q->execute([
+		$q->execute([
 			':id' 		=> $id,
 			':title'	=> $chapter->getTitle(),
 			':content'	=> $chapter->getContent()
 		]);
 
-		return $updated;
+		return $q;
 		
 	}
 
@@ -160,6 +160,4 @@ class Chapter extends Model
 		$lastSpace = strpos($content, ' ', $limit);
 		return substr($content, 0, $lastSpace).'...';
 	}
-
-
 }
