@@ -8,7 +8,11 @@ use \App\Model\User;
 use \App\Model\Admin;
 use \App\Controller\Controller;
 
-
+ /**
+* ChapterController is a controller for managing the backend chapters
+*
+*  
+*/
 class ChapterController extends Controller
 {
 	public function __construct(){
