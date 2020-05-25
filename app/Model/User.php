@@ -21,6 +21,11 @@ class User extends Model
 	const INVALID_CONFIRM = "Le mot de passe n'est pas vérifié";
 	const INVALID_STATUS = "Vous n'avez pas le statut pour vous connecter à l'espace d'administration";
 
+	/**
+	 * Create a new user
+	 * @param User $user
+     * @return bool
+     */
 	public function create(User $user) {
 		$q = $this->db->prepare('INSERT INTO users(email, password) VALUES(:email, :password)');
 		$q->execute([
@@ -31,6 +36,11 @@ class User extends Model
 		return $q;
 	}
 
+	/**
+	 * get email users
+	 * @param string $email
+     * @return bool
+     */
 	public function get($email) {
 		$q = $this->db->prepare('SELECT email, password, isAdmin FROM users WHERE email = :email');
 		$q->execute([
@@ -38,9 +48,14 @@ class User extends Model
 		]);
 
 		$data = $q->fetch(\PDO::FETCH_ASSOC);
+
 		return $data;
 	}
 
+	/**
+	 * unregister users
+     * @return array
+     */
 	public function unregister() {
 		$usersAdmin = [];
 

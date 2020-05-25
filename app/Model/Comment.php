@@ -17,7 +17,10 @@ class Comment extends Model
 	const INVALID_LENGTH = "La longueur du champ saisi n'est pas valide";
 	const INVALID_COMMENT = "Le commentaire n'est pas valide";
 
-	
+	/**
+	 * List comments
+     * @return array
+     */
 	public function allComments($id) {
 		$q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y à %Hh%i\') AS commented, isReported, enum FROM comments WHERE chapterId = ? ORDER BY commentedAt DESC');
 		$q->execute(array($id));
@@ -37,6 +40,11 @@ class Comment extends Model
 		return $comments;
 	}
 
+	/**
+	 * Find a chapter
+	 * @param int $id
+     * @return array
+     */
 	public function find($id) {        
 		$q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y %Hh%i\'), isReported, enum AS commentedat FROM comments WHERE id = :id');
 		$q->execute([
@@ -58,7 +66,8 @@ class Comment extends Model
 
 	/**
 	* insère les commentaires dans la db à partir de l'id de l'article.
-	* @param int $id
+	* @param Comment $comment
+	* @return bool
 	*/
 	public function save(Comment $comment) {
 		if($this->hasErrors()) {
@@ -78,7 +87,7 @@ class Comment extends Model
 	}
 
 	/**
-	* signalement d'un commentaire page article
+	* Reported a comment
 	* @param int $id
 	* @return bool
 	*/
@@ -87,35 +96,15 @@ class Comment extends Model
 		$report = $q->execute([
 			'id' => $id
 		]);
+
 		return $report;
 	}
 
 	/**
-	* Récuperation des commentaires signalés
-	*/	
-	public function allCommentsReported() {
-		$q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y à %Hh%i\') AS commented, isReported FROM comments WHERE isReported = 1 ORDER BY commentedAt DESC');
-		$q->execute(['']);
-
-		$results = $q->fetchAll(\PDO::FETCH_ASSOC);
-
-		if(!$results) {
-			return [];
-		}
-
-		foreach($results as $result) {
-			$comment = new Comment();
-
-			$comment->hydrate($comment, $result);
-			
-			$comments[] = $comment;
-		}
-
-		return $comments;
-	}
-
-	/**
-	* Modification du commentaires signalés
+	* update reported comment
+	* @param Comment $comment
+	* @param int $id
+	* @return string
 	*/
 	public function update(Comment $comment, $id) {
 		$q = $this->db->prepare('UPDATE comments SET author = :author, comment = :comment, isReported = :isReported, enum = :enum WHERE id = :id');
@@ -132,8 +121,9 @@ class Comment extends Model
 	}
 
 	/**
-	* Suppression du commentaires signalés
-	*/
+	 * Delete a chapter
+	 * @param int $id
+     */
 	public function delete($id) {
 		$q = $this->db->prepare('DELETE FROM comments WHERE id = :id');
 		$deleted = $q->execute([
@@ -142,18 +132,17 @@ class Comment extends Model
 	}
 
 	/**
-	* Confirmation du commentaires signalés
+	* Confirm reported comment
+	* @param int $id
 	*/
 	public function confirm($id) {
 		$q = $this->db->prepare('UPDATE comments SET isReported = 0, enum = "confirmed" WHERE id = :id');
 		$q->execute([
 			'id' => $id
 		]);
+
 	}
 
-	/**
-	* Validation du commentaires signalés
-	*/
 
 	public function getId(): ?int {
 		return $this->id; 

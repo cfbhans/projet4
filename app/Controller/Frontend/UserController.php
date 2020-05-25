@@ -9,17 +9,34 @@ use \App\Model\Admin;
 use \App\Controller\Controller;
 
 
+/**
+* Class UserController
+*
+* Used to recover model classes to send it into the frontoffice users views
+*  
+*/
 class UserController extends Controller
 {
-	
+	/**
+	 * UserController
+	 * Used to go to home view
+	 */	
 	public function home() {
 		$this->render('frontend/home', ['']);
 	}
 
+	/**
+	 * UserController
+	 * Used to go to author view
+	 */
 	public function author() {
 		$this->render('frontend/author', ['']);
 	}
 
+	/**
+	 * UserController
+	 * Used to go to contact view
+	 */
 	public function contact() {
 		$this->render('frontend/contact', ['']);
 	}
@@ -28,10 +45,18 @@ class UserController extends Controller
 		$this->render('frontend/connection', ['']);
 	}
 
+	/**
+	 * UserController
+	 * Used to create a registration
+	 */
 	public function create() {
 		$this->render('frontend/register', ['']);
 	}
 
+	/**
+	 * UserController
+	 * Used to register a registration
+	 */
 	public function store() {
 		$user = new User();
 
@@ -54,6 +79,10 @@ class UserController extends Controller
 		$this->render('frontend/connection',['']);
 	}
 
+	/**
+	 * UserController
+	 * Used to connect
+	 */
 	public function connect() {
 		$user = new User();
 
@@ -71,7 +100,6 @@ class UserController extends Controller
 		$user->hydrate($user, $data);
 
 		$user->connect();
-
 
 		$this->render('backend/administration',['']);
 	}

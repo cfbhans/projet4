@@ -8,10 +8,18 @@ use \App\Model\User;
 use \App\Model\Admin;
 use \App\Controller\Controller;
 
-
+/**
+* Class ChapterController
+*
+* Used to recover model classes to send it into the frontoffice chapters views
+*  
+*/
 class ChapterController extends Controller
 {
-	
+	/**
+     * ChapterController
+     * Used to recover chapters
+     */	
 	public function index() {
 		$chapters = (new Chapter)->all();
 		
@@ -20,6 +28,10 @@ class ChapterController extends Controller
 		]);
 	}
 
+	/**
+     * ChapterController
+     * Used to show chapters
+     */	
 	public function show($id) {
 		
 		$chapter = (new Chapter)->find($id);
@@ -31,5 +43,4 @@ class ChapterController extends Controller
 			'comments' => $comments
 		]);
 	}
-
 }

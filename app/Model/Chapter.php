@@ -14,6 +14,11 @@ class Chapter extends Model
 	const INVALID_CONTENT = "Le contenu du chapitre n'est pas valide";
 	const INVALID_PAGE = "La page demandée n'est pas accessible";
 
+
+	/**
+	 * List chapters
+     * @return array
+     */
 	public function all(): ?array {
 		
 		$chapters = [];
@@ -30,7 +35,11 @@ class Chapter extends Model
 		return $chapters;
 	}
 
-
+	/**
+	 * Find a chapter
+	 * @param int $id
+     * @return array
+     */
 	public function find($id) {
 		$q = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(createdAt, \'%d/%m/%Y %Hh%i\') AS createdat FROM chapters WHERE id = :id');
 		$q->execute([
@@ -50,10 +59,16 @@ class Chapter extends Model
 		}
 
 		$chapter->hydrate($chapter, $data);
-		
+
 		return $chapter;
 	}
 	
+	/**
+	 * Update a chapter
+	 * @param Chapter $chapter
+	 * @param int $id
+     * @return string
+     */
 	public function update(Chapter $chapter, $id) {
 		$q = $this->db->prepare('UPDATE chapters SET title = :title, content = :content, createdat = NOW() WHERE id = :id');
 		
@@ -62,11 +77,16 @@ class Chapter extends Model
 			':title'	=> $chapter->getTitle(),
 			':content'	=> $chapter->getContent()
 		]);
-
+		
 		return $q;
 		
 	}
 
+	/**
+	 * Create a new chapter
+	 * @param Chapter $chapter
+     * @return bool
+     */
 	public function createChapter(Chapter $chapter){
 		$q = $this->db->prepare('INSERT INTO chapters(title, content, createdat) VALUES (:newPostTitle, :newPostContent, NOW())');
 
@@ -78,6 +98,11 @@ class Chapter extends Model
 		return $newChapter;
 	}
 
+	/**
+	 * Delete a chapter
+	 * @param Chapter $chapter
+	 * @param int $id
+     */
 	public function delete($id) {
 		$del = $this->db->prepare('DELETE FROM chapters WHERE id = :id');
 		$delCom = $this->db->prepare('DELETE FROM comments WHERE chapterId = :chapterId');
@@ -88,8 +113,16 @@ class Chapter extends Model
 		$delCom->execute([
 			'chapterId' => $id
 		]);
+
+
 	}
 
+	/**
+	 * Limit the chapter's content
+	 * @param Chapter $chapter
+	 * @param int $id
+	 * @return string
+     */
 	public function excerpt(string $content, int $limit = 200) {
 		if (strlen($content) <= $limit) {
 			return $content;

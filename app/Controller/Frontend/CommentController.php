@@ -8,10 +8,18 @@ use \App\Model\User;
 use \App\Model\Admin;
 use \App\Controller\Controller;
 
-
+/**
+* Class CommentController
+*
+* Used to recover model classes to send it into the frontoffice comments views
+*  
+*/
 class CommentController extends Controller
 {
-	
+	/**
+     * CommentController
+     * Used to create new comment
+     */	
 	public function create($chapterId)  {
 		$comment = new Comment();
 
@@ -28,6 +36,10 @@ class CommentController extends Controller
 		Helper::redirect('chapters/' . $chapterId);
 	}
 
+	/**
+     * CommentController
+     * Used to report comment
+     */
 	public function report($id) {
 		$report = (new Comment)->report($id);
 

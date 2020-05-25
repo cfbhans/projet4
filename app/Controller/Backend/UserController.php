@@ -9,22 +9,38 @@ use \App\Model\Admin;
 use \App\Controller\Controller;
 
 
+/**
+* Class UserController
+*
+* Used to recover model classes to send it into the backoffice users views
+*  
+*/
 class UserController extends Controller
 {
+	/**
+     * UserController construct
+     * Used to verify connection when visitor is in administration
+     */
 	public function __construct(){
 		if(!isset($_SESSION['connected'])) {
 			header('Location: /');
 		}
 	}
 
-	/*Gestion des administrateurs*/
+	/**
+     * UserController construct
+     * Used to manage user administrator
+     */
 	public function admin() {
 		if (isset($_SESSION['connected'])){
 			$this->render('backend/administration', ['']);
 		}
 	}
 
-	/*listes des utilisateurs*/
+	/**
+     * UserController construct
+     * Used to list registered users
+     */
 	public function list(){
 		$users = (new User)->unregister();
 
@@ -33,7 +49,10 @@ class UserController extends Controller
 		]);
 	}
 	
-	/* deconnexion */
+	/**
+     * UserController construct
+     * Used to logout
+     */
 	public function logout(){
 		if (isset($_SESSION['connected'])) {
 			$_SESSION = array();
@@ -43,18 +62,22 @@ class UserController extends Controller
 		Helper::redirect(" ");
 	}
 
-
-	/* rendre administrateur */
+	/**
+     * UserController construct
+     * Used to give administration rights
+     */
 	public function setAdmin($id){
 		$users = new User();
 
 		$users->switchAdmin($id, true);
 
-		Helper::redirect('users/user');
-		
+		Helper::redirect('users/user');	
 	}
-
-	/*suppression des accessibilités d'administrateur*/
+	
+	/**
+     * UserController construct
+     * Used to remove administration rights
+     */
 	public function unsetAdmin($id){
 		$users = new User();
 

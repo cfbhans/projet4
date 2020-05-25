@@ -17,7 +17,7 @@ if(isset($_SESSION['connected'])) {
 				<br />
 				<?php if(isset($_SESSION['connected'])) { ?>
 					<form class="btn-form" action="<?= cf_link('chapters/' . $chapter->getId() .'/delete'); ?>" method="post">
-						<button class="btn-danger" type="submit" name="deleteChapter">Supprimer</button>
+						<button class="btn-danger" type="submit" name="deleteChapter" id="deleteChapter">Supprimer</button>
 					</form>
 				<?php } ?>
 			</a>
