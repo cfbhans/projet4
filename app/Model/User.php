@@ -23,23 +23,19 @@ class User extends Model
 
 	/**
 	 * Create a new user
-	 * @param User $user
-     * @return bool
      */
-	public function create(User $user) {
+	public function create() {
 		$q = $this->db->prepare('INSERT INTO users(email, password) VALUES(:email, :password)');
-		$q->execute([
+		
+		return $q->execute([
 			'email'		=> $this->getEmail(),
 			'password' 	=> password_hash($this->getPassword(), PASSWORD_DEFAULT)
 		]);
 
-		return $q;
 	}
 
 	/**
 	 * get email users
-	 * @param string $email
-     * @return bool
      */
 	public function get($email) {
 		$q = $this->db->prepare('SELECT email, password, isAdmin FROM users WHERE email = :email');
@@ -54,7 +50,6 @@ class User extends Model
 
 	/**
 	 * unregister users
-     * @return array
      */
 	public function unregister() {
 		$usersAdmin = [];

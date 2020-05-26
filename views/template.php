@@ -20,7 +20,7 @@
 
 
 </head>
-<body>
+<body id="top">
 	<div class="container-fluid">
 		<div id="wrap">
 			<header>
@@ -114,10 +114,14 @@
 					<a href="#">Politique de confidentialité</a>
 				</div>
 			</footer>
+
+			<!-- Back To Top Button -->
+			<div id="backtotop"><a href="#top"></a></div>
 		</div>
 	</div>
 
 	<!--Liens pour utilisation de javascript et autres frameworks -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

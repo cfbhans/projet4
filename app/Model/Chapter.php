@@ -17,7 +17,6 @@ class Chapter extends Model
 
 	/**
 	 * List chapters
-     * @return array
      */
 	public function all(): ?array {
 		
@@ -38,7 +37,6 @@ class Chapter extends Model
 	/**
 	 * Find a chapter
 	 * @param int $id
-     * @return array
      */
 	public function find($id) {
 		$q = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(createdAt, \'%d/%m/%Y %Hh%i\') AS createdat FROM chapters WHERE id = :id');
@@ -65,17 +63,16 @@ class Chapter extends Model
 	
 	/**
 	 * Update a chapter
-	 * @param Chapter $chapter
 	 * @param int $id
-     * @return string
      */
-	public function update(Chapter $chapter, $id) {
+	public function update($id) {
+	
 		$q = $this->db->prepare('UPDATE chapters SET title = :title, content = :content, createdat = NOW() WHERE id = :id');
 		
 		$q->execute([
 			':id' 		=> $id,
-			':title'	=> $chapter->getTitle(),
-			':content'	=> $chapter->getContent()
+			':title'	=> $this->getTitle(),
+			':content'	=> $this->getContent()
 		]);
 		
 		return $q;
@@ -84,15 +81,13 @@ class Chapter extends Model
 
 	/**
 	 * Create a new chapter
-	 * @param Chapter $chapter
-     * @return bool
      */
-	public function createChapter(Chapter $chapter){
+	public function create(){
 		$q = $this->db->prepare('INSERT INTO chapters(title, content, createdat) VALUES (:newPostTitle, :newPostContent, NOW())');
 
 		$newChapter = $q->execute([
-			':newPostTitle'		=> $chapter->getTitle(),
-			':newPostContent'	=> $chapter->getContent()
+			':newPostTitle'		=> $this->getTitle(),
+			':newPostContent'	=> $this->getContent()
 		]);
 
 		return $newChapter;
@@ -100,7 +95,6 @@ class Chapter extends Model
 
 	/**
 	 * Delete a chapter
-	 * @param Chapter $chapter
 	 * @param int $id
      */
 	public function delete($id) {
@@ -119,9 +113,6 @@ class Chapter extends Model
 
 	/**
 	 * Limit the chapter's content
-	 * @param Chapter $chapter
-	 * @param int $id
-	 * @return string
      */
 	public function excerpt(string $content, int $limit = 200) {
 		if (strlen($content) <= $limit) {

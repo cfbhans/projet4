@@ -32,6 +32,7 @@ abstract class Model
 	 * hydratation datas
 	 */
 	public static function hydrate($instance, array $data) {
+		
 		foreach($data as $key => $value) {
 			
 			$method = 'set'.ucfirst($key);
@@ -41,6 +42,22 @@ abstract class Model
 			}
 		}
 	}
+
+	/**
+	 * hydratation datas
+	 */
+/*	public static function hydrate(array $data) {
+		$classname = get_called_class();
+		$instance = new $classname();
+		foreach($data as $key => $value) {
+			
+			$method = 'set'.ucfirst($key);
+			
+			if(method_exists($instance, $method) || is_callable([$instance, $method])) {
+				$instance->$method($value);
+			}
+		}
+	}*/
 
 	/**
 	 * get errors

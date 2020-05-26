@@ -56,7 +56,7 @@ class CommentController extends Controller
 		
 		$comment->hydrate($comment, $data);
 
-		$comment->update($comment, $id);
+		$comment->update($id);
 
 		Helper::redirect('chapters/'. $chapterId);
 	}

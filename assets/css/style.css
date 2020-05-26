@@ -178,6 +178,54 @@ footer {
 	margin-top: 30px;
 }
 
+/* ---------------------------------- */
+/* Back to top
+------------------------------------- */
+#backtotop {
+	position: fixed;
+	right: 0;
+	opacity: 0;
+	visibility: hidden;
+	bottom: 25px;
+	margin: 0 25px 0 0;
+	z-index: 999;
+	transition: 0.35s;
+	transform: scale(0.7);
+}
+
+#backtotop.visible {
+	opacity: 1;
+	visibility: visible;
+	transform: scale(1);
+}
+
+#backtotop a {
+	text-decoration: none;
+	border: 0 none;
+	display: block;
+	width: 46px;
+	height: 46px;
+	background-color: #ffa500;
+	opacity: 1;
+    transition: all 0.3s;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 26px
+}
+
+body #backtotop a { color: #fff; }
+
+#backtotop a:after {
+	content: "\f106";
+	font-family: "FontAwesome";
+	position: relative;
+	display: block;
+	top: 50%;
+	-webkit-transform: translateY(-55%);
+	transform: translateY(-55%);
+}
+
+
 /**************** MEDIA-QUERIES ********************/
 @media screen and (min-width: 750px) and (max-width: 992px) {
 	.jumbotron img.col-sm-12.col-md-5 {

@@ -48,7 +48,7 @@ class ChapterController extends Controller
 
 		$chapter->hydrate($chapter, $data);
 
-		$chapter->createChapter($chapter);
+		$chapter->create();
 
 		Helper::redirect('chapters');		 
 	}
@@ -66,7 +66,7 @@ class ChapterController extends Controller
 	}
 
 	/**
-     * ChapterController upadte
+     * ChapterController update
      * Used to store an updated chapter
      */
 	public function update($id){
@@ -79,7 +79,7 @@ class ChapterController extends Controller
 
 		$chapter->hydrate($chapter, $data);
 
-		$chapter->update($chapter, $id);
+		$chapter->update($id);
 
 		Helper::redirect('chapters/' . $id);
 	}

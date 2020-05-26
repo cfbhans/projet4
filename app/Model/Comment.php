@@ -19,7 +19,6 @@ class Comment extends Model
 
 	/**
 	 * List comments
-     * @return array
      */
 	public function allComments($id) {
 		$q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y à %Hh%i\') AS commented, isReported, enum FROM comments WHERE chapterId = ? ORDER BY commentedAt DESC');
@@ -43,7 +42,6 @@ class Comment extends Model
 	/**
 	 * Find a chapter
 	 * @param int $id
-     * @return array
      */
 	public function find($id) {        
 		$q = $this->db->prepare('SELECT id, chapterId, author, comment, DATE_FORMAT(commentedAt, \'%d/%m/%Y %Hh%i\'), isReported, enum AS commentedat FROM comments WHERE id = :id');
@@ -65,11 +63,9 @@ class Comment extends Model
 	}
 
 	/**
-	* insère les commentaires dans la db à partir de l'id de l'article.
-	* @param Comment $comment
-	* @return bool
+	* Save the comment
 	*/
-	public function save(Comment $comment) {
+	public function save() {
 		if($this->hasErrors()) {
 			return ;
 		}
@@ -77,19 +73,16 @@ class Comment extends Model
 		$q = $this->db->prepare('INSERT INTO comments(chapterId, author, comment, commentedAt) 
 			VALUES (:chapterId, :author, :comment, NOW())');
 
-		$comment = $q->execute([
-			':chapterId'	=> $comment->getChapterId(),
-			':author'		=> $comment->getAuthor(), 
-			':comment'		=> $comment->getComment()
+		return $q->execute([
+			':chapterId'	=> $this->getChapterId(),
+			':author'		=> $this->getAuthor(), 
+			':comment'		=> $this->getComment()
 		]);
-
-		return $comment;
 	}
 
 	/**
 	* Reported a comment
 	* @param int $id
-	* @return bool
 	*/
 	public function report($id) {
 		$q = $this->db->prepare('UPDATE comments SET isReported = 1, enum = "" WHERE id = :id');
@@ -102,26 +95,23 @@ class Comment extends Model
 
 	/**
 	* update reported comment
-	* @param Comment $comment
 	* @param int $id
-	* @return string
 	*/
-	public function update(Comment $comment, $id) {
+	public function update($id) {
 		$q = $this->db->prepare('UPDATE comments SET author = :author, comment = :comment, isReported = :isReported, enum = :enum WHERE id = :id');
 		
-		$q->execute([
+		return $q->execute([
 			'id' 		=> $id,
-			'author'	=> $comment->getAuthor(),
-			'comment'	=> $comment->getComment(),
+			'author'	=> $this->getAuthor(),
+			'comment'	=> $this->getComment(),
 			'isReported'=> 0,
 			'enum'		=> "confirmed"
 		]);
 
-		return $q;
 	}
 
 	/**
-	 * Delete a chapter
+	 * Delete a comment
 	 * @param int $id
      */
 	public function delete($id) {
@@ -142,7 +132,6 @@ class Comment extends Model
 		]);
 
 	}
-
 
 	public function getId(): ?int {
 		return $this->id; 

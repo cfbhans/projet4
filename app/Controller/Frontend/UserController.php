@@ -74,7 +74,7 @@ class UserController extends Controller
 
 		$user->hydrate($user, $data);
 
-		$user->create($user);
+		$user->create();
 
 		$this->render('frontend/connection',['']);
 	}

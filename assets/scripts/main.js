@@ -16,4 +16,25 @@ tinymce.init({
 	/*inline: true, !!!!!! LIGNE BLOQUANTE POUR L'INITIALISATION  de tinyMCE !!!!!! */
 });
 
-	
+/* ---------------------------------- */
+/* Back to top
+------------------------------------- */
+jQuery(document).ready(function() {
+  
+  var btn = $('#backtotop');
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+      btn.addClass('visible');
+    } else {
+      btn.removeClass('visible');
+    }
+  });
+
+  btn.on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop:0}, '300');
+  });
+
+});
+
