@@ -160,7 +160,14 @@ $router->map( 'POST', '/users/[i:id]/set', function($id) {
 	$controller->setAdmin($id);
 });
 
+/*Modify admin users*/
 $router->map( 'POST', '/users/[i:id]/unset', function($id) {
 	$controller = new App\Controller\Backend\UserController();
 	$controller->unsetAdmin($id);
+});
+
+/*map to delete user*/
+$router->map( 'POST', '/users/[i:id]/delete', function($id) {
+	$controller = new App\Controller\Backend\UserController();
+	$controller->delete($id);
 });

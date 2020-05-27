@@ -107,8 +107,6 @@ class Chapter extends Model
 		$delCom->execute([
 			'chapterId' => $id
 		]);
-
-
 	}
 
 	/**

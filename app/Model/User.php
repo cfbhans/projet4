@@ -35,6 +35,25 @@ class User extends Model
 	}
 
 	/**
+	 * Find a user
+	 * @param int $id
+     */
+	public function find($id) {        
+		$q = $this->db->prepare('SELECT id FROM users WHERE id = :id');
+		$q->execute([
+			'id' => $id
+		]);
+
+		$data = $q->fetch();
+		
+		$user = new User();
+
+		$user->hydrate($user, $data);
+
+		return $user;
+	}
+
+	/**
 	 * get email users
      */
 	public function get($email) {
@@ -64,6 +83,17 @@ class User extends Model
 		}
 
 		return $usersAdmin;
+	}
+
+		/**
+	 * Delete an user
+	 * @param int $id
+     */
+	public function delete($id) {
+		$del = $this->db->prepare('DELETE FROM users WHERE id = :id');
+		$del->execute([
+			'id' => $id
+		]);
 	}
 
 	public function getId(): int {

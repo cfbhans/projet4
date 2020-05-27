@@ -85,4 +85,15 @@ class UserController extends Controller
 
 		Helper::redirect('users/user');
 	}
+
+	/**
+     * ChapterController delete
+     * Used to delete an user
+     */
+	 public function delete($id){
+		$user = (new User)->find($id);
+		$user->delete($id);
+		
+		Helper::redirect('users/user');
+	}
 }

@@ -162,6 +162,10 @@ form {
 	margin-bottom: 30px;
 }
 
+#form-admin {
+	display: flex;
+}
+
 /*Espacement du tinyMCE*/
 #post_title {
 	margin-bottom: 15px;
