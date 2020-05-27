@@ -46,7 +46,7 @@ class ChapterController extends Controller
 			'content'   => $_POST['newPostContent']
 		];
 
-		$chapter->hydrate($chapter, $data);
+		$chapter->hydrate($data);
 
 		$chapter->create();
 
@@ -77,7 +77,7 @@ class ChapterController extends Controller
 			'content'   => $_POST['updateContent']
 		];
 
-		$chapter->hydrate($chapter, $data);
+		$chapter->hydrate($data);
 
 		$chapter->update($id);
 

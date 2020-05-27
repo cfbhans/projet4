@@ -32,7 +32,7 @@ class Comment extends Model
 
 		foreach($results as $result) {
 			$comment = new Comment();
-			$comment->hydrate($comment, $result);
+			$comment->hydrate($result);
 			$comments[] = $comment;
 		}
 
@@ -57,7 +57,7 @@ class Comment extends Model
 		
 		$comment = new Comment();
 
-		$comment->hydrate($comment, $data);
+		$comment->hydrate($data);
 
 		return $comment;
 	}

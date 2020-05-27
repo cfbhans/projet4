@@ -27,7 +27,7 @@ class Chapter extends Model
 
 		foreach ($results as $result) {
 			$chapter = new Chapter();
-			$chapter->hydrate($chapter, $result);
+			$chapter->hydrate($result);
 			$chapters[] = $chapter;
 		}
 
@@ -56,7 +56,7 @@ class Chapter extends Model
 			$this->errors[] = self::INVALID_PAGE;
 		}
 
-		$chapter->hydrate($chapter, $data);
+		$chapter->hydrate($data);
 
 		return $chapter;
 	}

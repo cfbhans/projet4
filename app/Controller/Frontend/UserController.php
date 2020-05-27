@@ -72,7 +72,7 @@ class UserController extends Controller
 			}
 		}
 
-		$user->hydrate($user, $data);
+		$user->hydrate($data);
 
 		$user->create();
 
@@ -97,7 +97,7 @@ class UserController extends Controller
 
 		$data = $user->get($email);
 
-		$user->hydrate($user, $data);
+		$user->hydrate($data);
 
 		$user->connect();
 

@@ -29,7 +29,7 @@ class CommentController extends Controller
 			'comment'   => $this->purify($_POST['comment'])
 		];
 
-		$comment->hydrate($comment, $data);
+		$comment->hydrate($data);
 
 		$comment->save();
 

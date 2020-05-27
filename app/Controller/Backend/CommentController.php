@@ -54,7 +54,7 @@ class CommentController extends Controller
 			'isReported'=> 0
 		];
 		
-		$comment->hydrate($comment, $data);
+		$comment->hydrate($data);
 
 		$comment->update($id);
 

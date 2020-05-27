@@ -48,7 +48,7 @@ class User extends Model
 		
 		$user = new User();
 
-		$user->hydrate($user, $data);
+		$user->hydrate($data);
 
 		return $user;
 	}
@@ -78,7 +78,7 @@ class User extends Model
 
 		foreach ($results as $result) {
 			$user = new User();
-			$user->hydrate($user, $result);
+			$user->hydrate($result);
 			$usersAdmin[] = $user; 
 		}
 
