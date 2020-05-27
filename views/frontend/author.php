@@ -11,8 +11,8 @@
 
 		<div class="jumbotron row opac" id="philo">
 			<h3 class="text-center col-sm-12 pb-5">Une philosophie de vie</h3>
-			<img class="col-sm-12 col-md-5" src="assets/images/philosophie.png" alt="La philosophie" />
 			<p class="col-sm-12 col-md-7 text-justify">Duis lobortis nunc metus, ac fringilla sapien varius sed. Nunc malesuada mauris dolor, et mattis sem malesuada scelerisque. Aliquam pharetra dignissim arcu, nec eleifend lacus accumsan eu. Donec malesuada ante non tellus vehicula congue. Nulla id augue et est convallis laoreet. Nam nec risus ac magna convallis pulvinar id sed est. Donec a ornare est. Pellentesque sed odio dui. Vivamus finibus vulputate iaculis. Sed vel suscipit augue, tempor sagittis dui. Nulla pharetra urna id lorem tristique, aliquam bibendum ipsum porttitor. Fusce sit amet nulla vitae sapien porta vestibulum. </p>
+			<img class="col-sm-12 col-md-5" src="assets/images/philosophie.png" alt="La philosophie" />
 		</div>
 
 		<div class="jumbotron row opac" id="meeting">
