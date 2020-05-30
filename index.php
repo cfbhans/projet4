@@ -5,11 +5,13 @@ require 'vendor/autoload.php';
 
 use App\Tools\Helper;
 
-$router = new AltoRouter();
-$router->setBasePath('/projet4');
+$router = new App\Router\Router($_GET['url']);
 
 require_once "app/helper.php";
 require_once "app/routes.php";
+
+
+/*
 
 // match current request url
 $match = $router->match();
@@ -20,3 +22,4 @@ if(is_array($match) && is_callable($match['target'])) {
 } else {
 	header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
 }
+*/
