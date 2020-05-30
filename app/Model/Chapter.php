@@ -99,13 +99,8 @@ class Chapter extends Model
      */
 	public function delete($id) {
 		$del = $this->db->prepare('DELETE FROM chapters WHERE id = :id');
-		$delCom = $this->db->prepare('DELETE FROM comments WHERE chapterId = :chapterId');
 		$del->execute([
 			'id' => $id
-		]);
-
-		$delCom->execute([
-			'chapterId' => $id
 		]);
 	}
 

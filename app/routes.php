@@ -21,7 +21,7 @@ $router->get('/contact', function() {
 	$controller->contact();
 });
 
-$router->get('chapters', function() {
+$router->get('/chapters', function() {
 	$controller = new App\Controller\Frontend\ChapterController();
 	$controller->index();
 });
@@ -43,19 +43,19 @@ $router->get('/chapters/create', function() {
 });
 
 /*map to edit chapter page*/
-$router->get('/chapters/:id/edit', function($id) { 
+$router->get('chapters/:id/edit', function($id) { 
 	$controller = new App\Controller\Backend\ChapterController();
 	$controller->edit($id);
 });
 
 /*map to update chapter page*/
-$router->post('/chapters/:id', function($id) { 
+$router->post('chapters/:id', function($id) { 
 	$controller = new App\Controller\Backend\ChapterController();
 	$controller->update($id);
 });
 
 /*map to delete chapter page*/
-$router->post('/chapters/:id/delete', function($id) {
+$router->post('chapters/:id/delete', function($id) {
 	$controller = new App\Controller\Backend\ChapterController();
 	$controller->delete($id);
 });
@@ -79,7 +79,7 @@ $router->post('comments/:id/report', function($id) {/*report*/
 });
 
 /*Reported comment*/
-$router->get('/comments/comment', function() {
+$router->get('comments/comment', function() {
 	$controller = new App\Controller\Backend\CommentController();
 	$controller->index();
 });
