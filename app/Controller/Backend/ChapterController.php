@@ -31,12 +31,9 @@ class ChapterController extends Controller
      * Used to create a new chapter
      */
 	public function create(){
-<<<<<<< HEAD
+
 		return $this->render('backend/writeChapter', ['']);
-=======
-		die('toto');
-		$this->render('backend/writeChapter', ['']);
->>>>>>> 9515fa21b0f68464472814abbc0e4ce9420a513b
+
 	}
 
 	/**
