@@ -1,4 +1,11 @@
 <?php
+<<<<<<< HEAD
+=======
+$router->get('/posts', function(){ echo 'tous les articles';});
+$router->get('/posts/:id', function($id){ echo 'Afficher l\'articles' . $id;});
+$router->post('/posts/:id', function($id){ echo 'Afficher post de article' . $id;});
+
+>>>>>>> 9515fa21b0f68464472814abbc0e4ce9420a513b
 /*Home*/
 $router->get('/', function() {
   	$controller = new App\Controller\Frontend\UserController();
@@ -17,7 +24,11 @@ $router->get('/contact', function() {
 	$controller->contact();
 });
 
+<<<<<<< HEAD
 $router->get('chapters', function() {
+=======
+$router->get('/chapters', function() {
+>>>>>>> 9515fa21b0f68464472814abbc0e4ce9420a513b
 	$controller = new App\Controller\Frontend\ChapterController();
 	$controller->index();
 
@@ -27,7 +38,10 @@ $router->get('chapters/create', function() {
 	$controller = new App\Controller\Backend\ChapterController();
 	$controller->create();
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9515fa21b0f68464472814abbc0e4ce9420a513b
 $router->get('chapters/:id', function($id) {
 	$controller = new App\Controller\Frontend\ChapterController();
 	$controller->show($id);
@@ -39,6 +53,15 @@ $router->post('chapters', function() {
 	$controller->store();
 });
 
+<<<<<<< HEAD
+=======
+/*map to create chapter page*/
+$router->get('/chapters/create', function() { 
+	$controller = new App\Controller\Backend\ChapterController();
+	$controller->create();
+});
+
+>>>>>>> 9515fa21b0f68464472814abbc0e4ce9420a513b
 /*map to edit chapter page*/
 $router->get('chapters/:id/edit', function($id) { 
 	$controller = new App\Controller\Backend\ChapterController();
