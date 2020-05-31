@@ -19,7 +19,6 @@ class Chapter extends Model
 	 * List chapters
      */
 	public function all(): ?array {
-		
 		$chapters = [];
 		$q = $this->db->query('SELECT id, title, content, DATE_FORMAT(createdAt, \'%d/%m/%Y %Hh%i\') AS createdat FROM chapters');
 
@@ -39,6 +38,7 @@ class Chapter extends Model
 	 * @param int $id
      */
 	public function find($id) {
+		
 		$q = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(createdAt, \'%d/%m/%Y %Hh%i\') AS createdat FROM chapters WHERE id = :id');
 		$q->execute([
 			'id' => $id

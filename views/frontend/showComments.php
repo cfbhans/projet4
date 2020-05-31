@@ -29,7 +29,7 @@ if(isset($_SESSION['connected'])) {
 <hr>
 <div class="col-12">
 	<h3>Ajouter un commentaire à ce chapitre : </h3>
-	<form id="comment-form" action="<?= cf_link('comments/create/' . $chapter->getId() .'#comments'); ?>" method="POST">
+	<form id="comment-form" action="<?= cf_link('comments/create/' . $chapter->getId()); ?>" method="POST">
 		<?php
 		if(App\Tools\Helper::hasErrors()){
 			foreach ($_SESSION['errors'] as $error) {
